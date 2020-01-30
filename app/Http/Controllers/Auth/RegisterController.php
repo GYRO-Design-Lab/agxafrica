@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use App\Models\User;
+use App\Models\Company;
 
 class RegisterController extends Controller
 {
@@ -50,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'string'],
@@ -68,16 +70,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'full_name' => $data['full_name'],
             'email' => $data['email'],
             'password' => Hash::make('agx-Secret'),
-            'phone' => $data['phone'],
-            
+            'phone' => $data['phone'],            
         ]);
-        
-            // 'company_name' => $data['company_name'],
-            // 'company_address' => $data['company_address'],
-            // 'commodities' => $data['commodities'],
+
+        $company = new Company;
+        $company->user_id =  $user->id;
+        $company->name =  $data['company_name'];
+        $company->address =  $data['company_address'];
+        $company->commodities =  $data['commodities'];
+        $company->save();
+
+        return $user;
     }
 }

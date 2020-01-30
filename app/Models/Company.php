@@ -8,6 +8,10 @@ class Company extends Model
 {
     protected $fillable = ["address", "contact_person", "contact_phone", "contact_email", "commodities"];
 
+    protected $casts = [
+        'commodities' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
