@@ -11,8 +11,23 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
+});
+*/
+
+Route::get('/', function () {
+    return view('stage_one');
+});
+
+Route::get('/stage_two', function () {
+    return view('stage_two');
+});
+
+
+Route::get('/stage_three', function () {
+    return view('stage_three');
 });
 
 Auth::routes();
