@@ -20,12 +20,10 @@
 </head>
 
 <body class="landing-page sidebar-collapse">
-
-
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+        <a class="navbar-brand" href="/">
           AgX Africa </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -36,8 +34,6 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-
-
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/agxafrica" target="_blank" data-original-title="Follow us on Twitter">
               <i class="fa fa-twitter"></i>
@@ -58,15 +54,23 @@
     </div>
   </nav>
 
-
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/ddd.jpg')">
     <div class="container">
+      @if(Session::has('reg_done'))      
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+          <strong>{{ Session::get('reg_done')}}</strong> 
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="tru value=""e">&times;</span>
+          </button>
+        </div>
+      @endif
+
       <div class="row">
         <div class="col-md-6">
           <h1 class="title">Africa's largest online commodities exchange</h1>
           <!-- <h4>Africa's largest online commodities market </h4> -->
           <br>
-          <a href="#registerNow" target="_blank" class="btn btn-danger btn-raised btn-lg" style="background: #34A35E">
+          <a href="#registerNow" class="btn btn-danger btn-raised btn-lg" style="background: #34A35E">
             <i class="fa fa-edit"></i> Register today
           </a>
         </div>
@@ -74,40 +78,34 @@
     </div>
   </div>
 
-
   <div class="main main-raised">
     <div class="container">
-
-
-
       <div class="section section-contacts" id="registerNow">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
             <h2 class="text-center title">Fill out the registration form</h2>
             <!-- <h4 class="text-center description">Please fill out the form below</h4> -->
 
-            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{-- <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
               <strong>Thanks for registering on AGX Africa | Africa's largest online commodities market</strong> 
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="tru value=""e">&times;</span>
               </button>
-            </div>
+            </div> --}}
 
-            <form class="contact-form">
-
-
-
+            <form class="contact-form" method="POST" action="/register">
+              @csrf
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Your Full Name</label>
-                    @csrf<input type="text" class="form-control" name="fullname">
+                    @csrf<input type="text" class="form-control" name="full_name" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="company_name" class="bmd-label-floating">Company Name</label>
-                    <input type="text" class="form-control" name="company_name">
+                    <label for="email" class="bmd-label-floating">Email</label>
+                    <input type="email" class="form-control" name="email" required>
                   </div>
                 </div>
               </div>
@@ -116,20 +114,20 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Phone</label>
-                    <input type="phone" class="form-control" name="phone">
+                    <input type="phone" class="form-control" name="phone" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="company_email" class="bmd-label-floating">Company Email</label>
-                    <input type="email" class="form-control" name="company_email">
+                    <label for="company_name" class="bmd-label-floating">Company Name</label>
+                    <input type="text" class="form-control" name="company_name" required>
                   </div>
-                </div>
+                </div>                
               </div>
 
               <div class="form-group">
                 <label for="company_address" class="bmd-label-floating">Company Address</label>
-                <textarea type="text" class="form-control" rows="2" name="company_address" id="company_address"></textarea>
+                <textarea type="text" class="form-control" rows="2" name="company_address" id="company_address" required></textarea>
               </div>
 
               <br>
@@ -139,12 +137,12 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="commodities">Commodities</label>
-                    <select multiple class="form-control selectpicker" data-style="btn btn-link" id="commodities" style="min-height: 70px;">
+                    <select multiple class="form-control selectpicker" data-style="btn btn-link" id="commodities" style="min-height: 70px;" name="commodities[]" required>
                       <option selected="" disabled="">Select Commodities</option>
-                      <option>Metals</option>
-                      <option>Energy</option>
-                      <option>Livestock & Meat</option>
-                      <option>Forest Products</option>
+                      <option value="Metals">Metals</option>
+                      <option value="Energy">Energy</option>
+                      <option value="Livestock & Meat">Livestock & Meat</option>
+                      <option value="Forest Products">Forest Products</option>
                     </select>
                   </div>
                 </div>
@@ -154,7 +152,7 @@
 
               <div class="row">
                 <div class="col-md-4 ml-auto mr-auto text-center">
-                  <button class="btn btn-primary btn-raised" style="">
+                  <button class="btn btn-primary btn-raised" style="" type="submit">
                     Submit
                   </button>
                 </div>

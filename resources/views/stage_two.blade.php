@@ -25,7 +25,7 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+        <a class="navbar-brand" href="/">
           AgX Africa </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -84,31 +84,36 @@
           <p>Please fill out the form below</p>
         </div>
 
-        
+        @if(Session::has('status'))
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong>{{ Session::get('status') }}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
 
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
 
-       
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-          <strong>Thanks for Completing the Verification process</strong> 
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-
-        <form>
-
-
-
+        <form method="POST" action="/companies/{{ Session::get('slug') }}">
+          @method('PUT')
+          @csrf
           <div class="form-row">
-
             <div class="form-group col-md-6">
-              <label for="confirm_company_name">Confirm Company Name</label>
-              <input type="text" class="form-control" disabled="" id="confirm_company_name" name="confirm_company_name" placeholder="Company Name">
+              <label for="confirm_company_name">Company Name</label>
+              <input type="text" class="form-control" disabled id="confirm_company_name" value=" {{ Session::get('company_name') }}">
             </div>
             <div class="form-group col-md-6">
-              <label for="confirm_company_email">Confirm Company Email</label>
-              <input type="email" class="form-control" disabled="" name="confirm_company_email" id="confirm_company_email" placeholder="Company Email">
+              <label for="confirm_company_email">Company Address</label>
+              <input type="text" class="form-control" disabled id="confirm_company_email" value=" {{ Session::get('company_address') }}">
             </div>
 
           </div>
@@ -116,29 +121,24 @@
           <br>
 
           <div class="form-row">
-
-            
             <div class="form-group col-md-6">
               <label for="CAC_registration_number">CAC Registration No</label>
-              @csrf<input type="text" class="form-control" name="CAC_registration_number" id="CAC_registration_number" placeholder="CAC Reg. No">
+              @csrf<input type="text" class="form-control" name="cac_reg" id="CAC_registration_number" placeholder="CAC Reg. No" required>
             </div>
 
             <div class="form-group col-md-6">
               <label for="NEPC_registration_number">NEPC Registration Number</label>
-              <input type="text" class="form-control" name="NEPC_registration_number" id="NEPC_registration_number" placeholder="NEPC Reg. No">
+              <input type="text" class="form-control" name="nepc_reg" id="NEPC_registration_number" placeholder="NEPC Reg. No" required>
             </div>
             
           </div>
 
-
-
-
-          <br>
+          {{-- <br>
 
           <div class="form-group">
             <label for="confirm_company_address">Confirm Company Address</label>
             <input type="text" class="form-control" disabled="" name="confirm_company_address" id="confirm_company_address" placeholder="Company Address">
-          </div>
+          </div> --}}
 
           <br>
 
@@ -146,73 +146,54 @@
           <div class="form-row">
 
             <div class="form-group col-md-4">
-              <label for="inputEmail4">Commodity</label>
-              <input type="email" class="form-control" id="commodity" name="commodity" placeholder="Commodity">
+              <label for="inputEmail4">Commodities</label>
+              <input type="text" class="form-control" id="commodity" name="commodities[]" placeholder="Commodity" value=" {{ Session::get('commodities') }}" disabled required>
             </div>
             <div class="form-group col-md-4">
               <label for="do_you_import_this_commodity">Do you import or export this commodity?</label>
-              <select class="form-control selectpicker" data-style="btn btn-link" id="do_you_import_this_commodity">
+              <select class="form-control selectpicker" data-style="btn btn-link" id="do_you_import_this_commodity" name="commodities[]" required>
                 <option selected="" disabled="">Import / Export </option>
-                <option name="import">Import</option>
-                <option name="export">Export</option>
+                <option value="import">Import</option>
+                <option value="export">Export</option>
               </select>
             </div>
             <div class="form-group col-md-4">
               <label for="quantity_per_month">Quantity per month</label>
-              <input type="text" class="form-control" name="quantity_per_month" id="quantity_per_month" placeholder="Quantity per month">
+              <input type="number" class="form-control" name="commodities[]" id="quantity_per_month" placeholder="Quantity per month" required>
             </div>
           </div>
 
           <br>
 
-
-
-          <div class="form-row">  
-            
+          <div class="form-row">
             <div class="form-group col-md-3">
               <label for="contact_person">Contact Person</label>
-              <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact person">
+              <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Contact person" required>
             </div>
-
             <div class="form-group col-md-3">
               <label for="contact_person_phone_no">Phone number</label>
-              <input type="text" class="form-control" id="contact_person_phone_no" name="contact_person_phone_no" placeholder="Contact person's phone no">
+              <input type="text" class="form-control" id="contact_person_phone_no" name="contact_phone" placeholder="Contact person's phone no" required>
             </div>
-
 
             <div class="form-group col-md-3">
               <label for="contact_person_email">Email</label>
-              <input type="email" class="form-control" id="contact_person_email" name="contact_person_email" placeholder="Contact person's Email">
+              <input type="email" class="form-control" id="contact_person_email" name="contact_email" placeholder="Contact person's Email" required>
             </div>
-
             
             <div class="form-group col-md-3">
               <label for="contact_person_position">Position</label>
-              <input type="text" class="form-control" id="contact_person_position" name="contact_person_position" placeholder="Contact person's Position">
+              <input type="text" class="form-control" id="contact_person_position" name="contact_position" placeholder="Contact person's Position" required>
             </div>
-
-
           </div>
 
           <button type="submit" class="btn btn-primary" style="background: #34A35E;">Submit</button>
         </form>
-
-       
-
-       
-
-
-
-
       </div>
     </div>
   </div>
 
-
-
   <footer class="footer footer-default">
     <div class="container">
-      
       <div class="copyright float-right">
         &copy;
         <script>

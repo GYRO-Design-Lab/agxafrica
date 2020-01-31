@@ -16,7 +16,7 @@ class RegDocumentController extends Controller
      */
     public function index()
     {
-        //
+        // return view('stage_three');        
     }
 
     /**
@@ -26,7 +26,7 @@ class RegDocumentController extends Controller
      */
     public function create()
     {
-        //
+        return view('stage_three');
     }
 
     /**
@@ -73,7 +73,7 @@ class RegDocumentController extends Controller
         );
         // $company->reg_documents()->save($reg_document);
 
-        return redirect('/')->with('success', 'Registration Documents Uploaded Successfully');
+        return redirect('/')->with('reg_done', 'Registration Documents Uploaded Successfully. We will contact you shortly.');
     }
 
     /**

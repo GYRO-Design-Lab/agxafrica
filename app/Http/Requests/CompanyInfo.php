@@ -29,6 +29,7 @@ class CompanyInfo extends FormRequest
             'contact_person' => 'required|string',
             'contact_phone' => 'required|string',
             'contact_email' => 'required|string',
+            'contact_position' => 'required|string',
             'commodities' => 'required|array',
         ];
     }

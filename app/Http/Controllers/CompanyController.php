@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Company;
 use App\Http\Requests\CompanyInfo;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo "store";
     }
 
     /**
@@ -75,10 +76,13 @@ class CompanyController extends Controller
         $company->contact_person = $request->contact_person;
         $company->contact_phone = $request->contact_phone;
         $company->contact_email = $request->contact_email;
+        $company->contact_position = $request->contact_position;
         $company->commodities = $request->commodities;
         $company->save();
 
-        return back()->with('success', 'Company information updated successfully');
+        Session::flash("url", "/companies/".$company->slug."/reg_documents");
+        return redirect('/companies/'.$company->slug.'/reg_documents/create')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
+        // return redirect('/stage_three')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
     }
 
     /**

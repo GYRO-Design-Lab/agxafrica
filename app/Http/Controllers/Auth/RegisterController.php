@@ -7,7 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
+use Session;
 use App\Models\User;
 use App\Models\Company;
 
@@ -31,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/stage_two';
 
     /**
      * Create a new controller instance.
@@ -83,6 +84,12 @@ class RegisterController extends Controller
         $company->address =  $data['company_address'];
         $company->commodities =  $data['commodities'];
         $company->save();
+
+        Session::flash("status", "Thank you for registering on AGX Africa | Africa's largest online commodities market. Please fill out this form to verify your company.");
+        Session::flash("company_name", $company->name);
+        Session::flash("company_address", $company->address);
+        Session::flash("slug", $company->slug);
+        Session::flash("commodities", $company->commodities[0]);
 
         return $user;
     }
