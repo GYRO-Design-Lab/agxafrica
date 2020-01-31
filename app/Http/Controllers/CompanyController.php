@@ -70,12 +70,12 @@ class CompanyController extends Controller
      */
     public function update(CompanyInfo $request, Company $company)
     {
-        $company->cac_reg = $request['cac_reg'];
-        $company->nepc_reg = $request['nepc_reg'];
-        $company->contact_person = $request['contact_person'];
-        $company->contact_phone = $request['contact_phone'];
-        $company->contact_email = $request['contact_email'];
-        $company->commodities = $request['commodities'];
+        $company->cac_reg = $request->cac_reg;
+        $company->nepc_reg = $request->nepc_reg;
+        $company->contact_person = $request->contact_person;
+        $company->contact_phone = $request->contact_phone;
+        $company->contact_email = $request->contact_email;
+        $company->commodities = $request->commodities;
         $company->save();
 
         return back()->with('success', 'Company information updated successfully');

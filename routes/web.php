@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resources([
-    'companies' => 'CompanyController',
-]);
+
+Route::resource('companies', 'CompanyController');
+Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
