@@ -93,6 +93,16 @@
               </button>
             </div> --}}
 
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
+
             <form class="contact-form" method="POST" action="/register">
               @csrf
               <div class="row">
@@ -163,9 +173,6 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 
