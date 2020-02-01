@@ -14,3 +14,4 @@ yarn-error.log
 /cgi-bin
 /.well-known
 .well-known
+.htaccess
