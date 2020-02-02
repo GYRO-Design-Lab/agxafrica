@@ -11,6 +11,9 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', function () {
     return view('stage_one');
 });
@@ -19,13 +22,11 @@ Route::get('/stage_two', function () {
     return view('stage_two');
 });
 
-
 Route::get('/stage_three', function () {
     return view('stage_three');
 });
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('companies', 'CompanyController');
-Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::resource('companies', 'CompanyController');
+    Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
+});

@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/stage_two';
+    protected $redirectTo = '/email/verify';
 
     /**
      * Create a new controller instance.
@@ -85,11 +85,11 @@ class RegisterController extends Controller
         $company->commodities =  $data['commodities'];
         $company->save();
 
-        Session::flash("status", "Thank you for registering on AGX Africa | Africa's largest online commodities market. Please fill out this form to verify your company.");
-        Session::flash("company_name", $company->name);
-        Session::flash("company_address", $company->address);
-        Session::flash("slug", $company->slug);
-        Session::flash("commodities", $company->commodities[0]);
+        // Session::flash("status", "Thank you for registering on AGX Africa | Africa's largest online commodities market. Please fill out this form to verify your company.");
+        // Session::flash("company_name", $company->name);
+        // Session::flash("company_address", $company->address);
+        // Session::flash("slug", $company->slug);
+        // Session::flash("commodities", $company->commodities[0]);
 
         return $user;
     }

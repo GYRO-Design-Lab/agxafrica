@@ -1,0 +1,8 @@
+.commodities-group {
+    margin-bottom: 5px;
+}
+
+.commodities-group select {
+    position: relative;
+    top: 23px;
+}

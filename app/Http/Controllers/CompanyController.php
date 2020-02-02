@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct() {
+        // $this->middleware(['']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +41,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        echo "store";
+        // 
     }
 
     /**
@@ -59,7 +63,10 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $data['company'] = $company;
+        $data['message'] = "Your email has been verified successfully. Please fill out this form to verify your company.";
+
+        return view('stage_two', $data);
     }
 
     /**
@@ -80,9 +87,7 @@ class CompanyController extends Controller
         $company->commodities = $request->commodities;
         $company->save();
 
-        Session::flash("url", "/companies/".$company->slug."/reg_documents");
-        return redirect('/companies/'.$company->slug.'/reg_documents/create')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
-        // return redirect('/stage_three')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
+        return redirect('/companies/'.$company->slug.'/reg_documents')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
     }
 
     /**

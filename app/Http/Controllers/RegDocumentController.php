@@ -16,7 +16,8 @@ class RegDocumentController extends Controller
      */
     public function index()
     {
-        // return view('stage_three');        
+        $data['slug'] = $this->company_slug();
+        return view('stage_three', $data);        
     }
 
     /**
@@ -26,7 +27,7 @@ class RegDocumentController extends Controller
      */
     public function create()
     {
-        return view('stage_three');
+        // return view('stage_three');
     }
 
     /**
