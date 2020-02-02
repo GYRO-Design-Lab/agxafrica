@@ -53,18 +53,18 @@
             </div>
           @endif
 
-          <form method="POST" action="/companies/{{ $company->slug }}">
+          <form method="POST" action="/companies/{{ $company->slug }}" class="stage_2_form">
             @method('PUT')
             @csrf
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="confirm_company_name">Company Name</label>
-                <input type="text" class="form-control" disabled id="confirm_company_name" value=" {{ $company->name }}">
+                <input type="text" class="form-control" disabled id="confirm_company_name" value="{{ $company->name }}">
               </div>
 
               <div class="form-group col-md-6">
                 <label for="confirm_company_email">Company Address</label>
-                <input type="text" class="form-control" disabled id="confirm_company_email" value=" {{ $company->address }}">
+                <input type="text" class="form-control" disabled id="confirm_company_email" value="{{ $company->address }}">
               </div>
             </div>
 
@@ -87,21 +87,21 @@
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label for="contact_person">Contact Person</label>
-                <input type="text" class="form-control" id="contact_person" name="contact_person" value=" {{ $company->contact_person }}" required>
+                <input type="text" class="form-control" id="contact_person" name="contact_person" value="{{ $company->contact_person }}" required>
               </div>
               <div class="form-group col-md-3">
                 <label for="contact_person_phone_no">Phone number</label>
-                <input type="text" class="form-control" id="contact_person_phone_no" name="contact_phone" value=" {{ $company->contact_phone }}" required>
+                <input type="text" class="form-control" id="contact_person_phone_no" name="contact_phone" value="{{ $company->contact_phone }}" required>
               </div>
 
               <div class="form-group col-md-3">
                 <label for="contact_person_email">Email</label>
-                <input type="email" class="form-control" id="contact_person_email" name="contact_email" value=" {{ $company->contact_email }}" required>
+                <input type="email" class="form-control" id="contact_person_email" name="contact_email" value="{{ $company->contact_email }}" required>
               </div>
               
               <div class="form-group col-md-3">
                 <label for="contact_person_position">Position</label>
-                <input type="text" class="form-control" id="contact_person_position" name="contact_position" value=" {{ $company->contact_position }}" required>
+                <input type="text" class="form-control" id="contact_person_position" name="contact_position" value="{{ $company->contact_position }}" required>
               </div>
             </div>            
             
@@ -111,11 +111,11 @@
               <label class="col-md-12">Commodities</label>
                 
               @foreach ($company->commodities as $commodity => $properties)
-                <div class="form-group col-md-4 commodities-group">
-                  <input type="text" class="form-control" name="commodities[]" placeholder="Commodity" value="&nbsp; {{ $commodity }} " disabled required>
+                <div class="form-group col-md-4 commodities_group">
+                  <input type="text" class="form-control" name="commodities[]" placeholder="Commodity" value="{{ $commodity }}" readonly required>
                 </div>
 
-                <div class="form-group col-md-4 commodities-group">
+                <div class="form-group col-md-4 commodities_group">
                   <select class="form-control selectpicker" data-style="btn btn-link" name="import_export[]" required>
                     <option selected="" disabled="">do you import or export this commodity?</option>
                     <option value="Export" 
@@ -136,7 +136,7 @@
                   </select>
                 </div>
 
-                <div class="form-group col-md-4 commodities-group">
+                <div class="form-group col-md-4 commodities_group">
                   <input type="number" class="form-control" name="quantities[]" placeholder="quantity per month" required 
                     @if($properties != '')
                       value="{{ $properties[1] }}"

@@ -1,8 +1,12 @@
-.commodities-group {
+.stage_2_form input {
+    padding-left: 5px;
+}
+
+.commodities_group {
     margin-bottom: 5px;
 }
 
-.commodities-group select {
+.commodities_group select {
     position: relative;
     top: 23px;
 }

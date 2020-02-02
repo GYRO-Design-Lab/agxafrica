@@ -31,6 +31,10 @@ class CompanyInfo extends FormRequest
             'contact_email' => 'required|string',
             'contact_position' => 'required|string',
             'commodities' => 'required|array',
+            'import_export' => 'required|array',
+            'import_export.*' => 'required|string',
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer',
         ];
     }
 }

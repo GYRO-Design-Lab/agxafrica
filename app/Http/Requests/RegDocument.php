@@ -29,8 +29,8 @@ class RegDocument extends FormRequest
             'cac_1_1' => 'required|file|mimes:png,jpg,jpeg,pdf',
             'memart' => 'required|file|mimes:png,jpg,jpeg,pdf',
             'others' => 'nullable|array',
-            'others.document' => 'nullable|file|mimes:png,jpg,jpeg,pdf',
-            'others.type' => 'nullable|string',
+            // 'others.document' => 'nullable|file|mimes:png,jpg,jpeg,pdf',
+            // 'others.type' => 'nullable|string',
         ];
     }
 }

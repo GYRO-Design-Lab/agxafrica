@@ -38,14 +38,10 @@ class RegDocumentController extends Controller
      */
     public function store(RD $request, Company $company)
     {
-        $cac_certificate = $request->cac_certificate->storeAs('reg_documents/'.$company->slug, $request->cac_certificate->getClientOriginalName());
-        $nepc_certificate = $request->nepc_certificate->storeAs('reg_documents/'.$company->slug, $request->nepc_certificate->getClientOriginalName());
-        $cac_1_1 = $request->cac_1_1->storeAs('reg_documents/'.$company->slug, $request->cac_1_1->getClientOriginalName());
-        $memart = $request->memart->storeAs('reg_documents/'.$company->slug, $request->memart->getClientOriginalName());
-
-        if($request->has('others')) {
-            // 
-        }
+        $cac_certificate = $request->cac_certificate->storeAs('reg_documents/'.$company->slug, 'cac_certificate.'.$request->cac_certificate->extension());
+        $nepc_certificate = $request->nepc_certificate->storeAs('reg_documents/'.$company->slug, 'nepc_certificate.'.$request->nepc_certificate->extension());
+        $cac_1_1 = $request->cac_1_1->storeAs('reg_documents/'.$company->slug, 'cac_1_1.'.$request->cac_1_1->extension());
+        $memart = $request->memart->storeAs('reg_documents/'.$company->slug, 'memart.'.$request->memart->extension());
 
         // $reg_document = new
         $company->reg_documents()->createMany(
@@ -72,7 +68,20 @@ class RegDocumentController extends Controller
                 ],
             ]
         );
-        // $company->reg_documents()->save($reg_document);
+
+        if($request->has('others')) {
+            $n = 1;
+            foreach ($request->others as $x) {
+                $other = $x->storeAs('reg_documents/'.$company->slug, 'other_doc_'.$n.'.'.$x->extension());
+
+                $company->reg_documents()->create([
+                    'company_id' => $company->id,
+                    'type' => 'other',
+                    'file' => $other,
+                ]);
+                $n++;
+            }
+        }
 
         return redirect('/')->with('reg_done', 'Registration Documents Uploaded Successfully. We will contact you shortly.');
     }

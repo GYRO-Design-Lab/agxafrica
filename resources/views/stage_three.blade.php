@@ -46,7 +46,7 @@
             Make sure to upload past export Contract Bill of Laden and test results on commodities your company trades, in the <b>other company documents</b> section.
           </div>
 
-          <form method="POST" action="{{ '/companeies/'.$slug.'/reg_documents'}}" enctype="multipart/form-data">
+          <form method="POST" action="{{ '/companies/'.$slug.'/reg_documents'}}" enctype="multipart/form-data">
             @csrf
             <h4>Upload required documents</h4>
             <div class="form-row">  
@@ -77,22 +77,22 @@
             <div class="form-row">  
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
                 <label for="other_document_one">Document 1</label>
-                <input type="file" class="form-control-file" id=other_document_one"  name="other_document_one">
+                <input type="file" class="form-control-file" id="other_document_one"  name="others[]">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
                 <label for="other_document_two">Document 2</label>
-                <input type="file" class="form-control-file"  name="other_document_two" id="other_document_two">
+                <input type="file" class="form-control-file"  name="others[]" id="other_document_two">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
                 <label for="other_document_three">Document 3</label>
-                <input type="file" class="form-control-file"  name="other_document_three" id="other_document_three">
+                <input type="file" class="form-control-file"  name="others[]" id="other_document_three">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
                 <label for="other_document_four">Document 4</label>
-                <input type="file" class="form-control-file" name="other_document_four" id="other_document_four">
+                <input type="file" class="form-control-file" name="others[]" id="other_document_four">
               </div>
             </div>
 

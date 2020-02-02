@@ -78,13 +78,22 @@ class CompanyController extends Controller
      */
     public function update(CompanyInfo $request, Company $company)
     {
+        $commodities = [];
+        $c = $request->commodities;
+        $x = $request->import_export;
+        $q = $request->quantities;
+        
+        for ($i=0; $i < count($c) ; $i++) { 
+            $commodities[$c[$i]] = [$x[$i], $q[$i]];
+        }
+        
         $company->cac_reg = $request->cac_reg;
         $company->nepc_reg = $request->nepc_reg;
         $company->contact_person = $request->contact_person;
         $company->contact_phone = $request->contact_phone;
         $company->contact_email = $request->contact_email;
         $company->contact_position = $request->contact_position;
-        $company->commodities = $request->commodities;
+        $company->commodities = $commodities;
         $company->save();
 
         return redirect('/companies/'.$company->slug.'/reg_documents')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
