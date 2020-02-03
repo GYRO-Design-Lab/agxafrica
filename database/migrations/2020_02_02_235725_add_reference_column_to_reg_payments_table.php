@@ -14,7 +14,7 @@ class AddReferenceColumnToRegPaymentsTable extends Migration
     public function up()
     {
         Schema::table('reg_payments', function (Blueprint $table) {
-            //
+            $table->string('reference')->after('amount');
         });
     }
 

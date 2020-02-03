@@ -32,7 +32,7 @@
 
                     @auth
                         <li class="nav-item">
-                            <a style="color:#fff;" href="{{ route('logout') }}"
+                            <a class="auth-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"
                                 {{--  style="font-color:red;"  --}}
@@ -46,7 +46,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">
+                            <a class="nav-link auth-link" href="{{ route('login') }}">
                                 {{ __('Login') }}
                             </a>
                         </li>

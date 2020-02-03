@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Models\Company;
+
 class LoginController extends Controller
 {
     /*
@@ -38,6 +40,19 @@ class LoginController extends Controller
      */
     protected function redirectTo() {
         $slug = $this->company_slug();
+        $company = Company::where('slug', $slug)->first();
+
+        if ($company->cac_reg) {
+            if ($company->reg_documents()->exists()) {
+                if($company->reg_payment()->exists()) {
+                    \Session::flash('reg_done', 'You have completed the registration/verification process. We will contact you shortly.');
+                    return '/';
+                }
+                return '/payment/'.$slug;
+            }
+            return '/companies/'.$slug.'/reg_documents';
+        }
+
         return '/companies/'.$slug.'/edit';
     }
 }

@@ -30,10 +30,11 @@ Route::get('/stage_four', function () {
     return view('stage_four');
 });
 
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('companies', 'CompanyController');
     Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
+    Route::get('/payment/{company}', 'PaymentController@showPayment');
+    Route::post('/payment', 'PaymentController@redirectToGateway')->name('reg_payment');
 });
-
-Route::post('/payment', 'PaymentController@redirectToGateway')->name('reg_payment');
-Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');

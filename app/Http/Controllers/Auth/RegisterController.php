@@ -71,6 +71,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $commodities = [];
+        foreach ($data['commodities'] as $c) {
+            $commodities[$c] = [];
+        }       
+
         $user = User::create([
             'full_name' => $data['full_name'],
             'email' => $data['email'],
@@ -79,17 +84,11 @@ class RegisterController extends Controller
         ]);
 
         $company = new Company;
-        $company->user_id =  $user->id;
-        $company->name =  $data['company_name'];
-        $company->address =  $data['company_address'];
-        $company->commodities =  $data['commodities'];
+        $company->user_id = $user->id;
+        $company->name = $data['company_name'];
+        $company->address = $data['company_address'];
+        $company->commodities = $commodities;
         $company->save();
-
-        // Session::flash("status", "Thank you for registering on AGX Africa | Africa's largest online commodities market. Please fill out this form to verify your company.");
-        // Session::flash("company_name", $company->name);
-        // Session::flash("company_address", $company->address);
-        // Session::flash("slug", $company->slug);
-        // Session::flash("commodities", $company->commodities[0]);
 
         return $user;
     }

@@ -33,7 +33,7 @@
     <footer class="footer footer-default">
         <div class="container">
             <div class="copyright">
-                AGX Africa
+                AgX Africa
                 &copy;
                 <script>
                 document.write(new Date().getFullYear())

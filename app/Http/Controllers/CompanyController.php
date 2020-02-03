@@ -63,8 +63,15 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+        // check if the company is being updated for the first time
+        if($company->cac_reg) {
+            $data['message'] = "Please note that you have already completed this stage, but feel free to update any information you have previously provided.";
+        }
+        else {
+            $data['message'] = "Your email has been verified successfully. Please fill out this form to verify your company.";
+        }
+
         $data['company'] = $company;
-        $data['message'] = "Your email has been verified successfully. Please fill out this form to verify your company.";
 
         return view('stage_two', $data);
     }
@@ -96,7 +103,7 @@ class CompanyController extends Controller
         $company->commodities = $commodities;
         $company->save();
 
-        return redirect('/companies/'.$company->slug.'/reg_documents')->with('status', 'Company verification information stored successfully. Please Upload the required documents');
+        return redirect('/companies/'.$company->slug.'/reg_documents')->with('status', 'Company verification information stored successfully. Please upload the required documents');
     }
 
     /**

@@ -27,29 +27,26 @@
             <p>Please proceed to make payment</p>
           </div>
 
-          @if(Session::has('status'))
-            
-          @endif
-
-          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-              <strong>{!! 'You have provided the required information/documents. <br>Please go ahead and make the registration payment, to complete the registration/verification process.' !!}</strong> 
-              {{--  <strong>{{ Session::get('status') }}</strong>   --}}
+          @if (Session::has('status'))
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+              <strong>{!! Session::get('status') !!}</strong> 
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
+            </div>  
+          @endif          
 
           <form method="POST" action="{{ route('reg_payment') }}">
             @csrf
-            <input type="hidden" name="email" value=""/>
-            <input type="hidden" name="amount" value=""/>
-            <input type="hidden" name="currency" value=""/>
-            <input type="hidden" name="reference" value=""/>
-            <input type="hidden" name="key" value=""/>
-            <input type="hidden" name="metadata" value=""/>
+            <input type="hidden" name="email" value="{{ $email}}"/>
+            <input type="hidden" name="amount" value="2000000"/>
+            <input type="hidden" name="currency" value="NGN"/>
+            <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"/>
+            <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"/>
+            <input type="hidden" name="metadata" value="{{ json_encode($array = ['company_id' => $company]) }}"/>
             
-            <p>Click the button below to make a payment of <b>$50</b>.</p>
-            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Pay $50</button>
+            <p>Click the button below to make a payment of <b>N20,000</b>.</p>
+            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Pay N20,000</button>
           </form>
         </div>
       </div>

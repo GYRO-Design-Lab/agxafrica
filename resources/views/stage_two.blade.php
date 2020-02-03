@@ -13,10 +13,7 @@
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
               <div class="profile">
-                <div class="avatar">
-                  <img src="{{ asset('img/dd.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                </div>
-                <div class="name">
+                <div class="name mt-5">
                   <h3 class="title">Stage 1/3: UPDATE COMPANY INFORMATION</h3>
                 </div>
               </div>
@@ -119,16 +116,20 @@
                   <select class="form-control selectpicker" data-style="btn btn-link" name="import_export[]" required>
                     <option selected="" disabled="">do you import or export this commodity?</option>
                     <option value="Export" 
-                      @if($properties != '' &&  $properties[0] === 'Export')
-                        selected="selected"
+                      @if(!empty($properties))
+                        @if ($properties[0] === 'Export')
+                          selected="selected"
+                        @endif
                       @endif                      
                     >
                       Export
                     </option>
 
                     <option value="Import"
-                      @if($properties != '' &&  $properties[0] === 'Import')
-                        selected="selected"
+                      @if(!empty($properties))
+                        @if($properties[0] === 'Import')
+                          selected="selected"
+                        @endif
                       @endif 
                     >
                       Import
@@ -138,7 +139,7 @@
 
                 <div class="form-group col-md-4 commodities_group">
                   <input type="number" class="form-control" name="quantities[]" placeholder="quantity per month" required 
-                    @if($properties != '')
+                    @if(!empty($properties))
                       value="{{ $properties[1] }}"
                     @endif
                   >
@@ -148,8 +149,13 @@
 
             <br>            
 
-            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Next</button>
-            <small>upload company documents</small>
+            @if ($company->cac_reg)
+              <button type="submit" class="btn btn-primary" style="background: #34A35E;">Update</button>              
+            @else
+              <button type="submit" class="btn btn-primary" style="background: #34A35E;">Next</button>
+              <small>upload company documents</small>
+            @endif
+            
           </form>
         </div>
       </div>

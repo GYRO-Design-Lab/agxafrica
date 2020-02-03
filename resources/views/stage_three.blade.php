@@ -13,10 +13,7 @@
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
               <div class="profile">
-                <div class="avatar">
-                  <img src="{{ asset('img/dd.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                </div>
-                <div class="name">
+                <div class="name mt-5">
                   <h3 class="title">Stage 2/3: UPLOAD CREDENTIALS</h3>
                 </div>
               </div>
@@ -51,22 +48,22 @@
             <h4>Upload required documents</h4>
             <div class="form-row">  
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="CAC_Certificate">Upload CAC Certificate</label>
+                <label class="file-label" for="CAC_Certificate">Upload CAC Certificate</label>
                 <input type="file" class="form-control-file" name="cac_certificate" id="CAC_Certificate" required>
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="CAC1_1">Upload CAC 1.1</label>
+                <label class="file-label" for="CAC1_1">Upload CAC 1.1</label>
                 <input type="file" class="form-control-file" name="cac_1_1" id="CAC1_1" required>
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="memart">Upload Memart</label>
+                <label class="file-label" for="memart">Upload Memart</label>
                 <input type="file" class="form-control-file" name="memart" id="memart" required>
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="nepc_certificate">Upload NEPC Certificate</label>
+                <label class="file-label" for="nepc_certificate">Upload NEPC Certificate</label>
                 <input type="file" class="form-control-file" name="nepc_certificate" id="nepc_certificate" required>
               </div>
             </div>
@@ -76,28 +73,32 @@
             <h4>Other company documents</h4>
             <div class="form-row">  
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="other_document_one">Document 1</label>
+                <label class="file-label" for="other_document_one">Document 1</label>
                 <input type="file" class="form-control-file" id="other_document_one"  name="others[]">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="other_document_two">Document 2</label>
+                <label class="file-label" for="other_document_two">Document 2</label>
                 <input type="file" class="form-control-file"  name="others[]" id="other_document_two">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="other_document_three">Document 3</label>
+                <label class="file-label" for="other_document_three">Document 3</label>
                 <input type="file" class="form-control-file"  name="others[]" id="other_document_three">
               </div>
 
               <div class="form-group col-md-3" style="border: 1px solid #34A35E; padding: 0.5%;">
-                <label for="other_document_four">Document 4</label>
+                <label class="file-label" for="other_document_four">Document 4</label>
                 <input type="file" class="form-control-file" name="others[]" id="other_document_four">
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Next</button>
-            <small>make payment</small>
+            @if ($update)
+              <button type="submit" class="btn btn-primary" style="background: #34A35E;">Update</button>              
+            @else
+              <button type="submit" class="btn btn-primary" style="background: #34A35E;">Next</button>
+              <small>make payment</small>  
+            @endif            
           </form>
         </div>
       </div>

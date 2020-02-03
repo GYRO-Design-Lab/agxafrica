@@ -10,3 +10,19 @@
     position: relative;
     top: 23px;
 }
+
+.file-label {
+    cursor: pointer;
+}
+
+.auth-link {
+    color: #000;
+}
+
+.navbar.navbar-transparent .auth-link {
+    color: #fff !important;
+}
+
+.select-commodities label {
+    cursor: pointer;
+}

@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 ->subject('Welcome to Agx.africa')
                 ->markdown('emails.verifyEmail', [
                                                     'url' => $verifyUrl,
-                                                    'user' => Auth::user()->full_name
+                                                    'user' => $notifiable->full_name
                                                 ]);
         });
     }

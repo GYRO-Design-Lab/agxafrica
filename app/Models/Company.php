@@ -36,9 +36,9 @@ class Company extends Model
         return $this->hasMany('App\Models\Reg_document');
     }
 
-    public function reg_payments()
+    public function reg_payment()
     {
-        return $this->hasMany('App\Models\Reg_payment');
+        return $this->hasOne('App\Models\Reg_payment');
     }
 
     public function getRouteKeyName()

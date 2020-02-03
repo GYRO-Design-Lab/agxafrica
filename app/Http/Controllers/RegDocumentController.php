@@ -14,10 +14,19 @@ class RegDocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
-        $data['slug'] = $this->company_slug();
-        return view('stage_three', $data);        
+        $data['slug'] = $company->slug;
+        $data['update'] = false;
+
+        if($company->reg_documents()->exists()) {
+            $data['update'] = true;
+            \Session::flash('status', 'Please note that you have already completed this stage, but feel free to update any document you have previously provided or add more.');
+            return view('stage_three', $data);  
+        }
+        else {
+            return view('stage_three', $data);  
+        }          
     }
 
     /**
@@ -43,7 +52,6 @@ class RegDocumentController extends Controller
         $cac_1_1 = $request->cac_1_1->storeAs('reg_documents/'.$company->slug, 'cac_1_1.'.$request->cac_1_1->extension());
         $memart = $request->memart->storeAs('reg_documents/'.$company->slug, 'memart.'.$request->memart->extension());
 
-        // $reg_document = new
         $company->reg_documents()->createMany(
             [
                 [
@@ -82,8 +90,8 @@ class RegDocumentController extends Controller
                 $n++;
             }
         }
-        // You have provided the required information/documents. <br>Please go ahead and make the registration payment, to complete the registration/verification process.
-        return redirect('/')->with('reg_done', 'Registration Documents Uploaded Successfully. We will contact you shortly.');
+
+        return redirect('/payment/'.$company->slug)->with('status', 'You have provided the required information/documents. <br>Please go ahead and make the registration payment, to complete the registration/verification process.');
     }
 
     /**

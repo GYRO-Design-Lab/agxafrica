@@ -9,10 +9,20 @@
       <div class="container">
         @if(Session::has('reg_done'))      
           <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-            <strong>{{ Session::get('reg_done')}}</strong> 
+            <strong>{!! Session::get('reg_done') !!}</strong> 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="tru value=""e">&times;</span>
             </button>
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
           </div>
         @endif
 
@@ -80,13 +90,13 @@
 
                 <div class="form-group">
                   <label for="company_address" class="bmd-label-floating">Company Address</label>
-                  <textarea type="text" class="form-control" rows="2" name="company_address" id="company_address" required></textarea>
+                  <input type="text" class="form-control" name="company_address" id="company_address" required/>
                 </div>
 
                 <br>
 
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12 select-commodities">
                     <div class="form-group">
                       <label for="commodities">Commodities - <small>select a maximum of three (3)</small></label>
                       <br>
@@ -99,11 +109,11 @@
                         <option value="Metals">Metals</option>
                       </select> --}}
                       
-                      <input class="commodities_checkbox" type="checkbox" name="commodities" value="Agricultural" id="agricultural"/> <label for="agricultural">Agricultural</label> &nbsp;
-                      <input class="commodities_checkbox" type="checkbox" name="commodities" value="Energy" id="energy"/> <label for="energy">Energy</label> &nbsp;
-                      <input class="commodities_checkbox" type="checkbox" name="commodities" value="Forest Products" id="forest_products"/> <label for="forest_products">Forest Products</label> &nbsp;
-                      <input class="commodities_checkbox" type="checkbox" name="commodities" value="Livestock & Meat" id="livestock_meat"/> <label for="livestock_meat">Livestock & Meat</label> &nbsp;
-                      <input class="commodities_checkbox" type="checkbox" name="commodities" value="Metals" id="metals"/> <label for="metals">Metals</label> &nbsp;
+                      <input class="commodities_checkbox" type="checkbox" name="commodities[]" value="Agricultural" id="agricultural"/> <label for="agricultural">Agricultural</label> &nbsp;
+                      <input class="commodities_checkbox" type="checkbox" name="commodities[]" value="Energy" id="energy"/> <label for="energy">Energy</label> &nbsp;
+                      <input class="commodities_checkbox" type="checkbox" name="commodities[]" value="Forest Products" id="forest_products"/> <label for="forest_products">Forest Products</label> &nbsp;
+                      <input class="commodities_checkbox" type="checkbox" name="commodities[]" value="Livestock & Meat" id="livestock_meat"/> <label for="livestock_meat">Livestock & Meat</label> &nbsp;
+                      <input class="commodities_checkbox" type="checkbox" name="commodities[]" value="Metals" id="metals"/> <label for="metals">Metals</label> &nbsp;
                     </div>
                   </div>
                 </div>
