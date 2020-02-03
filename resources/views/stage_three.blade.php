@@ -17,7 +17,7 @@
                   <img src="{{ asset('img/dd.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                 </div>
                 <div class="name">
-                  <h3 class="title">Stage 3/3: Upload credentials</h3>
+                  <h3 class="title">Stage 2/3: UPLOAD CREDENTIALS</h3>
                 </div>
               </div>
             </div>

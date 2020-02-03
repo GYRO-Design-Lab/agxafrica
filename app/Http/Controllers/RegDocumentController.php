@@ -82,7 +82,7 @@ class RegDocumentController extends Controller
                 $n++;
             }
         }
-
+        // You have provided the required information/documents. <br>Please go ahead and make the registration payment, to complete the registration/verification process.
         return redirect('/')->with('reg_done', 'Registration Documents Uploaded Successfully. We will contact you shortly.');
     }
 

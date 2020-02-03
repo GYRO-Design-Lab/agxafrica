@@ -18,8 +18,7 @@
 
         <div class="row">
           <div class="col-md-6">
-            <h1 class="title">Africa's largest online commodities exchange</h1>
-            <!-- <h4>Africa's largest online commodities market </h4> -->
+            <h1 class="title">Online commodities exchange</h1>
             <br>
             <a href="#registerNow" class="btn btn-danger btn-raised btn-lg" style="background: #34A35E">
               <i class="fa fa-edit"></i> Register today

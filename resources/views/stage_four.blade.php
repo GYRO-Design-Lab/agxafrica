@@ -1,0 +1,57 @@
+@extends('layouts.app')
+@include('layouts.nav')
+
+@section('content')
+  <body class="profile-page sidebar-collapse">  
+    @yield('nav')
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/d.jpg') }}');"></div>
+
+    <div class="main main-raised">
+      <div class="profile-content" style="padding: 0% 2% 4% 2%;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+              <div class="profile">
+                {{--  <div class="avatar">
+                  <img src="{{ asset('img/dd.jpg') }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                </div>  --}}
+                <div class="name mt-5">
+                  <h3 class="title">Stage 3/3: PAYMENT</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="description text-center">
+            <p>Please proceed to make payment</p>
+          </div>
+
+          @if(Session::has('status'))
+            
+          @endif
+
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+              <strong>{!! 'You have provided the required information/documents. <br>Please go ahead and make the registration payment, to complete the registration/verification process.' !!}</strong> 
+              {{--  <strong>{{ Session::get('status') }}</strong>   --}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+          <form method="POST" action="{{ route('reg_payment') }}">
+            @csrf
+            <input type="hidden" name="email" value=""/>
+            <input type="hidden" name="amount" value=""/>
+            <input type="hidden" name="currency" value=""/>
+            <input type="hidden" name="reference" value=""/>
+            <input type="hidden" name="key" value=""/>
+            <input type="hidden" name="metadata" value=""/>
+            
+            <p>Click the button below to make a payment of <b>$50</b>.</p>
+            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Pay $50</button>
+          </form>
+        </div>
+      </div>
+    </div>
+@endsection
