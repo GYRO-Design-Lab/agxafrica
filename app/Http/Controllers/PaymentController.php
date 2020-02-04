@@ -59,7 +59,16 @@ class PaymentController extends Controller
             $pay->reference = $paymentDetails['reference'];
             $pay->save();
             
-            \Mail::to(auth()->user())->send(new RegPayment(auth()->user()->full_name));
+            // \Mail::to(auth()->user())->send(new RegPayment(auth()->user()->full_name));
+
+            $message = (new RegPayment(auth()->user()->full_name))->render();
+
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AgX Africa <agxafrica@gmail.com>' . "\r\n";
+            
+            mail(auth()->user()->email, "Registration Complete", $message, $headers);
+
             return redirect('/')->with('reg_done', 'Registration payment was successfull and all data provided have been saved. We will contact you shortly.');
         }
         else {

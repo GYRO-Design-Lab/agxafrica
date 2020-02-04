@@ -5,7 +5,7 @@
   <body class="landing-page sidebar-collapse">
     @yield('nav')
 
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/ddd.jpg') }}');">
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('img/wood.jpg') }}');">
       <div class="container">
         @if(Session::has('reg_done'))      
           <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -123,7 +123,7 @@
                 <div class="row">
                   <div class="col-md-4 ml-auto mr-auto text-center">
                     <button class="btn btn-primary btn-raised" type="submit">
-                      Submit
+                      Register
                     </button>
                   </div>
                 </div>

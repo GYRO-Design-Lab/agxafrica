@@ -12,6 +12,10 @@
 */
 
 Auth::routes(['verify' => true]);
+Route::get('/register', function () {
+    return redirect('/#registerNow');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {

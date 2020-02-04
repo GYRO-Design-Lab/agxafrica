@@ -2,7 +2,7 @@
 
 Dear {{ explode(' ',trim($user))[0] }},<br>
 
-Welcome to AgX Africa.<br>
+Welcome to Agx.africa.<br>
 Please click the button below to verify your email. Once your email has been verified, you'll proceed to verify your company: <br>
     1. Submit other company information <br>
     2. Upload required company documents <br>
