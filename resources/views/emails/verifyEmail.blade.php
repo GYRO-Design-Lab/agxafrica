@@ -6,7 +6,7 @@ Welcome to Agx.africa.<br>
 Please click the button below to verify your email. Once your email has been verified, you'll proceed to verify your company: <br>
     1. Submit other company information <br>
     2. Upload required company documents <br>
-    3. Make payment of N20,000
+    3. Make payment of N18,500
 
 <b>P.S</b> your password is <b>agx-Secret</b>
 

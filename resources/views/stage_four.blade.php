@@ -39,14 +39,14 @@
           <form method="POST" action="{{ route('reg_payment') }}">
             @csrf
             <input type="hidden" name="email" value="{{ $email}}"/>
-            <input type="hidden" name="amount" value="2000000"/>
+            <input type="hidden" name="amount" value="1850000"/>
             <input type="hidden" name="currency" value="NGN"/>
             <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"/>
             <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"/>
             <input type="hidden" name="metadata" value="{{ json_encode($array = ['company_id' => $company]) }}"/>
             
-            <p>Click the button below to make a payment of <b>N20,000</b>.</p>
-            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Pay N20,000</button>
+            <p>Click the button below to make a payment of <b>N18,500</b>.</p>
+            <button type="submit" class="btn btn-primary" style="background: #34A35E;">Pay N18,500</button>
           </form>
         </div>
       </div>

@@ -18,11 +18,11 @@
 
         @if ($errors->any())
           <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ul>
           </div>
         @endif
 
@@ -30,8 +30,12 @@
           <div class="col-md-6">
             <h1 class="title">Online commodities exchange</h1>
             <br>
+            <h2 style="line-height:1.1em; margin-top:-10px;">
+              Register now for free and become a verified merchant before we launch.
+            </h2>
+            <br>
             <a href="#registerNow" class="btn btn-danger btn-raised btn-lg" style="background: #34A35E">
-              <i class="fa fa-edit"></i> Register today
+              <i class="fa fa-edit"></i> Register Now
             </a>
           </div>
         </div> 
