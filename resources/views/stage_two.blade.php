@@ -108,11 +108,11 @@
               <label class="col-md-12">Commodities</label>
                 
               @foreach ($company->commodities as $commodity => $properties)
-                <div class="form-group col-md-4 commodities_group">
+                <div class="form-group col-md-3 commodities_group">
                   <input type="text" class="form-control" name="commodities[]" placeholder="Commodity" value="{{ $commodity }}" readonly required>
                 </div>
 
-                <div class="form-group col-md-4 commodities_group">
+                <div class="form-group col-md-3 commodities_group">
                   <select class="form-control selectpicker" data-style="btn btn-link" name="import_export[]" required>
                     <option selected="" disabled="">do you import or export this commodity?</option>
                     <option value="Export" 
@@ -137,20 +137,67 @@
                   </select>
                 </div>
 
-                <div class="form-group col-md-4 commodities_group">
+                <div class="form-group col-md-3 commodities_group">
                   <input type="number" class="form-control" name="quantities[]" placeholder="quantity per month" required 
                     @if(!empty($properties))
                       value="{{ $properties[1] }}"
                     @endif
                   >
-                </div>              
+                </div>
+                
+                <div class="form-group col-md-3 commodities_group">
+                  <select class="form-control selectpicker" data-style="btn btn-link" name="units[]" required>
+                    <option selected="" disabled="">select unit</option>
+
+                    <option value="kg" 
+                      @if(!empty($properties))
+                        @if ($properties[2] === 'kg')
+                          selected="selected"
+                        @endif
+                      @endif                      
+                    >
+                      Kilogram
+                    </option>
+
+                    <option value="oz" 
+                      @if(!empty($properties))
+                        @if ($properties[2] === 'oz')
+                          selected="selected"
+                        @endif
+                      @endif                      
+                    >
+                      Ounce
+                    </option>
+
+                    <option value="lb" 
+                      @if(!empty($properties))
+                        @if ($properties[2] === 'lb')
+                          selected="selected"
+                        @endif
+                      @endif                      
+                    >
+                      Pound
+                    </option>
+
+                    <option value="t" 
+                      @if(!empty($properties))
+                        @if ($properties[2] === 't')
+                          selected="selected"
+                        @endif
+                      @endif                      
+                    >
+                      Ton
+                    </option>
+
+                  </select>
+                </div>
               @endforeach              
             </div>
 
             <br>            
 
             @if ($company->cac_reg)
-              <button type="submit" class="btn btn-primary" style="background: #34A35E;">Update</button>              
+              {{--  <button type="submit" class="btn btn-primary" style="background: #34A35E;">Update</button>                --}}
             @else
               <button type="submit" class="btn btn-primary" style="background: #34A35E;">Next</button>
               <small>upload company documents</small>

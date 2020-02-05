@@ -89,9 +89,10 @@ class CompanyController extends Controller
         $c = $request->commodities;
         $x = $request->import_export;
         $q = $request->quantities;
+        $u = $request->units;
         
         for ($i=0; $i < count($c) ; $i++) { 
-            $commodities[$c[$i]] = [$x[$i], $q[$i]];
+            $commodities[$c[$i]] = [$x[$i], $q[$i], $u[$i]];
         }
         
         $company->cac_reg = $request->cac_reg;
