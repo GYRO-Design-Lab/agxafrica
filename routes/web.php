@@ -12,27 +12,16 @@
 */
 
 Auth::routes(['verify' => true]);
+
 Route::get('/register', function () {
     return redirect('/#registerNow');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('stage_one');
-});
-
-Route::get('/stage_two', function () {
-    return view('stage_two');
-});
-
-Route::get('/stage_three', function () {
-    return view('stage_three');
-});
-
-Route::get('/stage_four', function () {
-    return view('stage_four');
-});
+// Route::get('/stage_four', function () {
+//     return view('stage_four');
+// });
 
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
@@ -41,4 +30,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
     Route::get('/payment/{company}', 'PaymentController@showPayment');
     Route::post('/payment', 'PaymentController@redirectToGateway')->name('reg_payment');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {   
+    Route::resource('/merchants', 'Admin\MerchantController');
+});
+
+Route::get('/merchants/set-roles', function() {
+    $users = \App\Models\User::get();
+    foreach ($users as $user) {
+        $user->assignRole('merchant');
+    }
 });

@@ -83,6 +83,8 @@ class RegisterController extends Controller
             'phone' => $data['phone'],            
         ]);
 
+        $user->assignRole('merchant');
+
         $company = new Company;
         $company->user_id = $user->id;
         $company->name = $data['company_name'];
