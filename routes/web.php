@@ -35,10 +35,3 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {   
     Route::resource('/merchants', 'Admin\MerchantController');
 });
-
-Route::get('/merchants/set-roles', function() {
-    $users = \App\Models\User::get();
-    foreach ($users as $user) {
-        $user->assignRole('merchant');
-    }
-});
