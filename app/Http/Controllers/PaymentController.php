@@ -52,12 +52,16 @@ class PaymentController extends Controller
         // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
         
-        if ($paymentDetails['status'] === 'success' && $paymentDetails['amount'] === 2000000) {
+        if ($paymentDetails['status'] === 'success' && $paymentDetails['amount'] === 1850000) {
             $pay = new RP;
             $pay->company_id = $paymentDetails['metadata']['company_id'];
             $pay->amount = $paymentDetails['amount'];
             $pay->reference = $paymentDetails['reference'];
             $pay->save();
+
+            $company = Company::find($paymentDetails['metadata']['company_id']);
+            $company->verified = true;
+            $company->save();
             
             // \Mail::to(auth()->user())->send(new RegPayment(auth()->user()->full_name));
 
