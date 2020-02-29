@@ -59,9 +59,9 @@ class PaymentController extends Controller
             $pay->reference = $paymentDetails['reference'];
             $pay->save();
 
-            $company = Company::find($paymentDetails['metadata']['company_id']);
-            $company->verified = true;
-            $company->save();
+            // $company = Company::find($paymentDetails['metadata']['company_id']);
+            // $company->verified = true;
+            // $company->save();
             
             // \Mail::to(auth()->user())->send(new RegPayment(auth()->user()->full_name));
 
