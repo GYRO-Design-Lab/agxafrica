@@ -9,6 +9,11 @@ use App\Http\Requests\MarketRequest as MR;
 
 class MarketController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified_company', ['except' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
