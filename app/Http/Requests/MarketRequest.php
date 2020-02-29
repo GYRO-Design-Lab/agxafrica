@@ -27,10 +27,10 @@ class MarketRequest extends FormRequest
             'commodity' => 'required|string',
             'specification' => 'nullable|string',
             'location' => 'required|string',
-            'photo' => 'required|string',
+            'photo' => 'required|file|mimes:png,jpg,jpeg',
             'quantity' => 'required|string',
             'price' => 'required|numeric',
-            'trade_type' => 'required|in(["buy","sell"]',
+            'trade_type' => 'required|in:buy,sell',
         ];
     }
 }

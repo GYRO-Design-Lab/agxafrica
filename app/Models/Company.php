@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +38,11 @@ class Company extends Model
     public function reg_payment()
     {
         return $this->hasOne('App\Models\Reg_payment');
+    }
+
+    public function commodities()
+    {
+        return $this->hasMany('App\Models\Market');
     }
 
     public function getRouteKeyName()

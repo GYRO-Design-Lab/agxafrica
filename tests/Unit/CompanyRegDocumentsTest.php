@@ -6,7 +6,6 @@ namespace Tests\Unit;
 use Storage;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
-// use Illuminate\Support\Facades\Storage;
 
 class CompanyRegDocumentsTest extends TestCase
 {
