@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Market;
 use Illuminate\Http\Request;
+use App\Http\Requests\MarketRequest as MR;
 
 class MarketController extends Controller
 {
@@ -33,9 +34,9 @@ class MarketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MR $request)
     {
-        //
+        
     }
 
     /**
