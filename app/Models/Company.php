@@ -45,6 +45,11 @@ class Company extends Model
         return $this->hasMany('App\Models\Market');
     }
 
+    public function warehouses()
+    {
+        return $this->hasMany('App\Models\Warehouse');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

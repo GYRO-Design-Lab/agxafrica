@@ -17,7 +17,7 @@ class VerifiedCompany
     {
         $company = $request->company;
         if(!$company->verified) {
-            return redirect()->back()->with('status', 'Only verified companies/merchants can publish commodities.');
+            return redirect()->back()->with('status', 'Only verified companies/merchants can use this feature.');
             // return response()->json(['status' => 'Only verified companies/merchants can publish commodities.']);
         }
         return $next($request);

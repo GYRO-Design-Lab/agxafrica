@@ -28,6 +28,7 @@ Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('companies', 'CompanyController');
     Route::resource('companies.market', 'MarketController')->shallow();
+    Route::resource('companies.warehouse', 'WarehouseController')->shallow();
     Route::resource('companies.reg_documents', 'RegDocumentController')->shallow();
     Route::get('/payment/{company}', 'PaymentController@showPayment');
     Route::post('/payment', 'PaymentController@redirectToGateway')->name('reg_payment');
