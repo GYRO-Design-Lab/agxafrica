@@ -27,7 +27,8 @@ class StoreMarketTest extends TestCase
             'specification' => null,
             'location' => 'nigeria',
             'price' => '4000',
-            'quantity' => '500MT',
+            'quantity' => '500',
+            'unit' => 'kg',
             'trade_type' => 'buy'
         ]);
         

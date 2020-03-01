@@ -29,6 +29,7 @@ class MarketRequest extends FormRequest
             'location' => 'required|string',
             'photo' => 'required|file|mimes:png,jpg,jpeg',
             'quantity' => 'required|string',
+            'unit' => 'required|in:kg,oz,lb,t',
             'price' => 'required|numeric',
             'trade_type' => 'required|in:buy,sell',
         ];

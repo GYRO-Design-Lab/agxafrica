@@ -19,11 +19,12 @@ class UpdateMarketTest extends TestCase
      */
     public function update() {
         $this->authenticate();
-        $response = $this->json('PUT', url('/market/4'), [
+        $response = $this->json('PUT', url('/market/6'), [
             'specification' => null,
             'location' => 'germany',
             'price' => '423050',
-            'quantity' => '570MT',
+            'quantity' => '570',
+            'unit' => 'kg',
         ]);
         
         $response->dump();

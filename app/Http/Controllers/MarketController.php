@@ -43,13 +43,14 @@ class MarketController extends Controller
     public function store(MR $request, Company $company)
     {
         $photo = $request->photo->storeAs('market/'.$company->slug.'/commodities', $request->photo->getClientOriginalName());
+        $quantity = [$request->quantity, $request->unit];
 
         $commodity = new Market;
         $commodity->company_id = $company->id;
         $commodity->commodity = $request->commodity;
         $commodity->specification = $request->specification;
         $commodity->location = $request->location;
-        $commodity->quantity = $request->quantity;
+        $commodity->quantity = $quantity;
         $commodity->price = $request->price;
         $commodity->trade_type = $request->trade_type;
         $commodity->photo = $photo;
@@ -80,6 +81,7 @@ class MarketController extends Controller
         //
     }
 
+    // TODO: update validator
     /**
      * Update the specified resource in storage.
      *
@@ -89,9 +91,11 @@ class MarketController extends Controller
      */
     public function update(Request $request, Market $market)
     {
+        $quantity = [$request->quantity, $request->unit];
+
         $market->specification = $request->specification;
         $market->location = $request->location;
-        $market->quantity = $request->quantity;
+        $market->quantity = $quantity;
         $market->price = $request->price;
         $market->save();
 

@@ -19,7 +19,7 @@ class DeleteMarketTest extends TestCase
      */
     public function update() {
         $this->authenticate();
-        $response = $this->json('DELETE', url('/market/5'));
+        $response = $this->json('DELETE', url('/market/4'));
         
         $response->dump();
         $response->assertStatus(302);
