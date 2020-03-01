@@ -11,7 +11,7 @@ class MarketController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified_company', ['except' => ['index']]);
+        $this->middleware('verified_company', ['only' => ['store']]);
     }
 
     /**
@@ -89,7 +89,13 @@ class MarketController extends Controller
      */
     public function update(Request $request, Market $market)
     {
-        //
+        $market->specification = $request->specification;
+        $market->location = $request->location;
+        $market->quantity = $request->quantity;
+        $market->price = $request->price;
+        $market->save();
+
+        return redirect()->back()->with('status', 'Commodity published successfully.');
     }
 
     /**

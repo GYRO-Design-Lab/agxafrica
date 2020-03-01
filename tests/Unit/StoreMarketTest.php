@@ -9,7 +9,7 @@ use Illuminate\Http\UploadedFile;
 
 class StoreMarketTest extends TestCase
 {
-    private function authenticate(){
+    private function authenticate() {
         $this->json('POST', route('login'),[
             'email' => 'quad.lasisi@gmail.com',
             'password' => 'agx-Secret',
