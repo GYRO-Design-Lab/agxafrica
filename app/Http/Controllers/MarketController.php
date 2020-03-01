@@ -85,7 +85,6 @@ class MarketController extends Controller
         return $data;
     }
 
-    // TODO: update validator
     /**
      * Update the specified resource in storage.
      *
@@ -93,7 +92,7 @@ class MarketController extends Controller
      * @param  \App\Models\Market  $market
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Market $market)
+    public function update(MR $request, Market $market)
     {
         $quantity = [$request->quantity, $request->unit];
 

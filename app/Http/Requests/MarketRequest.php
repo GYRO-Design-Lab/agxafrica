@@ -23,15 +23,22 @@ class MarketRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'commodity' => 'required|string',
-            'specification' => 'nullable|string',
-            'location' => 'required|string',
-            'photo' => 'required|file|mimes:png,jpg,jpeg',
-            'quantity' => 'required|string',
-            'unit' => 'required|in:kg,oz,lb,t',
-            'price' => 'required|numeric',
-            'trade_type' => 'required|in:buy,sell',
-        ];
+        $rules = [
+                    'specification' => 'nullable|string',
+                    'location' => 'required|string',
+                    'quantity' => 'required|integer',
+                    'unit' => 'required|in:kg,oz,lb,t',
+                    'price' => 'required|numeric',
+                ];
+
+        if ($this->getMethod() == 'POST') {
+            $rules += [
+                        'commodity' => 'required|string',
+                        'photo' => 'required|file|mimes:png,jpg,jpeg',
+                        'trade_type' => 'required|in:buy,sell',
+                    ];
+        }
+
+        return $rules;
     }
 }

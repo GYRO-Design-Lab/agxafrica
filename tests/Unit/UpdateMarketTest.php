@@ -23,7 +23,7 @@ class UpdateMarketTest extends TestCase
             'specification' => null,
             'location' => 'germany',
             'price' => '423050',
-            'quantity' => '570',
+            'quantity' => '670',
             'unit' => 'kg',
         ]);
         
