@@ -95,7 +95,7 @@ class MarketController extends Controller
         $market->price = $request->price;
         $market->save();
 
-        return redirect()->back()->with('status', 'Commodity published successfully.');
+        return redirect()->back()->with('status', 'Commodity updated successfully.');
     }
 
     /**
@@ -106,6 +106,7 @@ class MarketController extends Controller
      */
     public function destroy(Market $market)
     {
-        //
+        $market->delete();
+        return redirect()->back()->with('status', 'Commodity deleted successfully.');
     }
 }
