@@ -68,7 +68,8 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
-        //
+        $data['commodity'] = $market;
+        return $data;
     }
 
     /**
