@@ -12,6 +12,7 @@ class MarketController extends Controller
     public function __construct()
     {
         $this->middleware('verified_company', ['only' => ['store']]);
+        $this->middleware('commodity_owner', ['except' => ['index', 'create', 'store']]);
     }
 
     /**
@@ -78,7 +79,8 @@ class MarketController extends Controller
      */
     public function edit(Market $market)
     {
-        //
+        $data['commodity'] = $market;
+        return $data;
     }
 
     // TODO: update validator
