@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Warehouse;
 use App\Models\Company;
+use App\Mail\WarehouseReg;
 use App\Http\Requests\WarehouseRequest as WR;
+
 use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
@@ -35,7 +37,7 @@ class WarehouseController extends Controller
         //
     }
 
-    // TODO: email notification
+    // TODO: make warehouse names unique
     /**
      * Store a newly created resource in storage.
      *
@@ -58,6 +60,16 @@ class WarehouseController extends Controller
         $warehouse->photo = $photo;
 
         $company->warehouses()->save($warehouse);
+
+        $message = (new WarehouseReg(auth()->user()->full_name, $request->name))->render();
+
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: AgX Africa <agxafrica@gmail.com>' . "\r\n";
+        
+        mail(auth()->user()->email, "Registration Complete", $message, $headers);
+        // \Mail::to(auth()->user())->send(new WarehouseReg(auth()->user()->full_name, $request->name));
+
         return redirect()->back()->with('status', 'Warehouse registered successfully. Please await verification.');
     }
 

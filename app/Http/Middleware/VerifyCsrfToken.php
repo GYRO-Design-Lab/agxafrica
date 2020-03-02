@@ -34,6 +34,9 @@ class VerifyCsrfToken extends Middleware
        if(env('APP_ENV') === 'local') {
            return true;
        }
+       if(env('APP_ENV') === 'testing') {
+           return true;
+       }
        return parent::tokensMatch($request);
     }
 }
