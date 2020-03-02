@@ -11,7 +11,7 @@ class Warehouse extends Model
         return $this->belongsTo('App\Models\Company');
     }
 
-    public function commodities()
+    public function live_commodities()
     {
         return $this->hasMany('App\Models\LiveMarket');
     }

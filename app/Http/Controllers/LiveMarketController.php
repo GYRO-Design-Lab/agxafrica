@@ -20,9 +20,10 @@ class LiveMarketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Warehouse $warehouse)
     {
-        //
+        $data['live_commodities'] = $warehouse->live_commodities()->get();
+        return $data;
     }
 
     /**
@@ -56,7 +57,7 @@ class LiveMarketController extends Controller
         $live_commodity->price = $request->price;
         $live_commodity->photo = $photo;
 
-        $warehouse->commodities()->save($live_commodity);
+        $warehouse->live_commodities()->save($live_commodity);
         return redirect()->back()->with('status', 'Live commodity published successfully.');
     }
 
@@ -68,7 +69,8 @@ class LiveMarketController extends Controller
      */
     public function show(LiveMarket $liveMarket)
     {
-        //
+        $data['live_commodity'] = $liveMarket;
+        return $data;
     }
 
     /**
@@ -79,7 +81,8 @@ class LiveMarketController extends Controller
      */
     public function edit(LiveMarket $liveMarket)
     {
-        //
+        $data['live_commodity'] = $liveMarket;
+        return $data;
     }
 
     /**
@@ -91,7 +94,15 @@ class LiveMarketController extends Controller
      */
     public function update(LMR $request, LiveMarket $liveMarket)
     {
-        //
+        $quantity = [$request->quantity, $request->unit];
+        
+        $liveMarket->specification = $request->specification;
+        $liveMarket->location = $request->location;
+        $liveMarket->quantity = $quantity;
+        $liveMarket->price = $request->price;
+        $liveMarket->save();
+        
+        return redirect()->back()->with('status', 'Live commodity updated successfully.');
     }
 
     /**
@@ -102,6 +113,7 @@ class LiveMarketController extends Controller
      */
     public function destroy(LiveMarket $liveMarket)
     {
-        //
+        $liveMarket->delete();
+        return redirect()->back()->with('status', 'Live commodity deleted successfully.');
     }
 }

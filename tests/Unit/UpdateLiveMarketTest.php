@@ -2,21 +2,31 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UpdateLiveMarketTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
+    private function authenticate() {
+        $this->json('POST', route('login'),[
+            'email' => 'quad.lasisi@gmail.com',
+            'password' => 'agx-Secret',
+        ]);
+    }
 
-        $response->assertStatus(200);
+    /**
+     * @test
+     */
+    public function update() {
+        $this->authenticate();
+        $response = $this->json('PUT', url('/live_market/1'), [
+            'specification' => null,
+            'location' => 'germany',
+            'price' => '423050',
+            'quantity' => '670',
+            'unit' => 'kg',
+        ]);
+        
+        $response->dump();
+        $response->assertStatus(302);
     }
 }
