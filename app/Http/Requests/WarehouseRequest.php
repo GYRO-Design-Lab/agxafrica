@@ -24,18 +24,20 @@ class WarehouseRequest extends FormRequest
     public function rules()
     {
         $rules = [
-                    'address' => 'required|string',
                     'manager' => 'required|string',
                     'contact_person' => 'required|string',
                     'email' => 'required|string',
                     'phone' => 'required|string',
                     'size' => 'required|string',
                     'capacity' => 'required|string',
-                    'photo' => 'required|file|mimes:png,jpg,jpeg',
                 ];
 
         if ($this->getMethod() == 'POST') {
-            $rules += [ 'name' => 'required|string'];
+            $rules += [ 
+                        'name' => 'required|string',
+                        'address' => 'required|string',
+                        'photo' => 'required|file|mimes:png,jpg,jpeg',
+                    ];
         }
 
         return $rules;

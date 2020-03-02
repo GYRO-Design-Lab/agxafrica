@@ -19,9 +19,10 @@ class WarehouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
-        //
+        $data['warehouses'] = $company->warehouses()->get();
+        return $data;
     }
 
     /**
@@ -68,7 +69,8 @@ class WarehouseController extends Controller
      */
     public function show(Warehouse $warehouse)
     {
-        //
+        $data['warehouse'] = $warehouse;
+        return $data;
     }
 
     /**
@@ -79,7 +81,8 @@ class WarehouseController extends Controller
      */
     public function edit(Warehouse $warehouse)
     {
-        //
+        $data['warehouse'] = $warehouse;
+        return $data;
     }
 
     /**
@@ -91,7 +94,15 @@ class WarehouseController extends Controller
      */
     public function update(WR $request, Warehouse $warehouse)
     {
-        //
+        $warehouse->manager = $request->manager;
+        $warehouse->contact_person = $request->contact_person;
+        $warehouse->email = $request->email;
+        $warehouse->phone = $request->phone;
+        $warehouse->size = $request->size;
+        $warehouse->capacity = $request->capacity;
+        $warehouse->save();
+
+        return redirect()->back()->with('status', 'Commodity updated successfully.');
     }
 
     /**
@@ -102,6 +113,7 @@ class WarehouseController extends Controller
      */
     public function destroy(Warehouse $warehouse)
     {
-        //
+        $warehouse->delete();
+        return redirect()->back()->with('status', 'Commodity deleted successfully.');
     }
 }
