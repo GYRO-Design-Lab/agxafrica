@@ -12,4 +12,9 @@ class LiveMarket extends Model
     protected $casts = [
         'quantity' => 'array'
     ];
+
+    public function warehouse()
+    {
+        return $this->belongsTo('App\Models\Warehouse');
+    }
 }

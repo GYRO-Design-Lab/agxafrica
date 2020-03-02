@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
       // ===== CUSTOM MIDDLEWARES =====
         'verified_company' => \App\Http\Middleware\Custom\VerifiedCompany::class,
+        'verified_warehouse' => \App\Http\Middleware\Custom\VerifiedWarehouse::class,
         'commodity_owner' => \App\Http\Middleware\Custom\CommodityOwner::class,
       // ===== CUSTOM MIDDLEWARES =====
     ];

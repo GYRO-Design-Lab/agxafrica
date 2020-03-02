@@ -10,4 +10,9 @@ class Warehouse extends Model
     {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function commodities()
+    {
+        return $this->hasMany('App\Models\LiveMarket');
+    }
 }
