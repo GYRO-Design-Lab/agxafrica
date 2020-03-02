@@ -34,7 +34,7 @@ class WarehouseRequest extends FormRequest
 
         if ($this->getMethod() == 'POST') {
             $rules += [ 
-                        'name' => 'required|string',
+                        'name' => 'required|string|unique:warehouses,name',
                         'address' => 'required|string',
                         'photo' => 'required|file|mimes:png,jpg,jpeg',
                     ];
