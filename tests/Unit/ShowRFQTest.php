@@ -5,7 +5,7 @@ namespace Tests\Unit;
 // use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
-class ShowMarketTest extends TestCase
+class ShowRFQTest extends TestCase
 {
     private function authenticate() {
         $this->json('POST', route('login'),[
@@ -19,7 +19,7 @@ class ShowMarketTest extends TestCase
      */
     public function show() {
         $this->authenticate();
-        $response = $this->json('GET', url('/market/6'));
+        $response = $this->json('GET', url('/rfq/1'));
         
         $response->dump();
         $response->assertStatus(200);

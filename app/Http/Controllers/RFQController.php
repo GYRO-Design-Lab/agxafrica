@@ -59,7 +59,8 @@ class RFQController extends Controller
      */
     public function show(RFQ $rfq)
     {
-        //
+        $data['rfq'] = $rfq;
+        return $data;
     }
 
     /**
@@ -70,9 +71,11 @@ class RFQController extends Controller
      */
     public function edit(RFQ $rfq)
     {
-        
+        $data['rfq'] = $rfq;
+        return $data;
     }
 
+    // TODO: middleware
     /**
      * Update the specified resource in storage.
      *
@@ -80,9 +83,12 @@ class RFQController extends Controller
      * @param  \App\Models\RFQ  $rfq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RFQ $rfq)
+    public function update(RR $request, RFQ $rfq)
     {
-        //
+        $rfq->expiry = $request->expiry;
+        $rfq->save();
+        
+        return redirect()->back()->with('status', 'Request for Quote updated successfully.');
     }
 
     /**

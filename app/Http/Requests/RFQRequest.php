@@ -24,17 +24,17 @@ class RFQRequest extends FormRequest
     public function rules()
     {
         $rules = [
-                    'commodity' => 'required|string',
-                    'category' => 'required|string',
-                    'specification' => 'required|string',
-                    'delivery_location' => 'required|string',
-                    'quantity' => 'required|string',
-                    'price' => 'required|numeric',
+                    'expiry' => 'required|date'                    
                 ];
 
         if ($this->getMethod() == 'POST') {
             $rules += [ 
-                        'expiry' => 'required|date'
+                        'commodity' => 'required|string',
+                        'category' => 'required|string',
+                        'specification' => 'required|string',
+                        'delivery_location' => 'required|string',
+                        'quantity' => 'required|string',
+                        'price' => 'required|numeric',
                     ];
         }
 

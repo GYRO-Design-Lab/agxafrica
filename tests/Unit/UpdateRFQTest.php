@@ -5,7 +5,7 @@ namespace Tests\Unit;
 // use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
-class ShowMarketTest extends TestCase
+class UpdateRFQTest extends TestCase
 {
     private function authenticate() {
         $this->json('POST', route('login'),[
@@ -17,11 +17,13 @@ class ShowMarketTest extends TestCase
     /**
      * @test
      */
-    public function show() {
+    public function update() {
         $this->authenticate();
-        $response = $this->json('GET', url('/market/6'));
+        $response = $this->json('PUT', url('/rfq/1'), [
+            'expiry' => '2021-01-22',
+        ]);
         
         $response->dump();
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }
