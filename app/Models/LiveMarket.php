@@ -17,4 +17,9 @@ class LiveMarket extends Model
     {
         return $this->belongsTo('App\Models\Warehouse');
     }
+
+    public function trades()
+    {
+        return $this->morphMany('App\Models\Trade', 'tradeable');
+    }
 }

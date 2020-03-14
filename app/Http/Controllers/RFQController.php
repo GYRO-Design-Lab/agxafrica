@@ -11,7 +11,7 @@ class RFQController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('rfq_owner', ['except' => ['index', 'create', 'store']]);
+        $this->middleware('rfq_owner', ['except' => ['index', 'create', 'store', 'show']]);
     }
 
     /**
@@ -22,7 +22,7 @@ class RFQController extends Controller
     public function index(Company $company)
     {
         $data['rfqs'] = $company->rfqs()
-                                // ->where('expiry', '<', 'dd')
+                                ->whereDate('expiry', '>', date('Y-m-d'))
                                 ->get();
         return $data;
     }

@@ -15,8 +15,8 @@ class CreateTradesTable extends Migration
     {
         Schema::create('trades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('commodity_id');
-            $table->bigInteger('seller_id');
+            $table->bigInteger('tradeable_id');
+            $table->bigInteger('tradeable_type');
             $table->bigInteger('buyer_id');
             $table->string('quantity');
             $table->bigInteger('total');

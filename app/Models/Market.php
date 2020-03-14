@@ -13,8 +13,8 @@ class Market extends Model
         'quantity' => 'array'
     ];
 
-    public function company()
+    public function trades()
     {
-        return $this->belongsTo('App\Models\Company');
-    }
+        return $this->morphMany('App\Models\Trade', 'tradeable');
+    }    
 }
