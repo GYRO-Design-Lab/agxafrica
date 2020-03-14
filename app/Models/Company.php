@@ -55,6 +55,16 @@ class Company extends Model
         return $this->hasMany('App\Models\RFQ');
     }
 
+    public function trade_investments()
+    {
+        return $this->hasMany('App\Models\Trade', 'buyer_id', 'id');
+    }
+
+    public function trade_sales()
+    {
+        return $this->hasMany('App\Models\Trade', 'seller_id', 'id');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

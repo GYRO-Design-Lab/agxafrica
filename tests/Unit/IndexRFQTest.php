@@ -5,7 +5,7 @@ namespace Tests\Unit;
 // use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
-class IndexWarehouseTest extends TestCase
+class IndexRFQTest extends TestCase
 {
     private function authenticate() {
         $this->json('POST', route('login'),[
@@ -19,7 +19,7 @@ class IndexWarehouseTest extends TestCase
      */
     public function index() {
         $this->authenticate();
-        $response = $this->json('GET', url('/companies/cuitcode/warehouse'));
+        $response = $this->json('GET', url('/companies/cuitcode/rfq'));
         
         $response->dump();
         $response->assertStatus(200);

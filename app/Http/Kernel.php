@@ -64,11 +64,13 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
-      // ===== CUSTOM MIDDLEWARES =====
+
+      // ===== CUSTOM MIDDLEWARE =====
         'verified_company' => \App\Http\Middleware\Custom\VerifiedCompany::class,
         'verified_warehouse' => \App\Http\Middleware\Custom\VerifiedWarehouse::class,
         'commodity_owner' => \App\Http\Middleware\Custom\CommodityOwner::class,
-      // ===== CUSTOM MIDDLEWARES =====
+        'rfq_owner' => \App\Http\Middleware\Custom\RFQOwner::class,
+      // ===== CUSTOM MIDDLEWARE =====
     ];
 
     /**

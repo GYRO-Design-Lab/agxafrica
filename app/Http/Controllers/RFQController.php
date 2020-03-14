@@ -9,14 +9,22 @@ use App\Http\Requests\RFQRequest as RR;
 
 class RFQController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('rfq_owner', ['except' => ['index', 'create', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Company $company)
     {
-        //
+        $data['rfqs'] = $company->rfqs()
+                                // ->where('expiry', '<', 'dd')
+                                ->get();
+        return $data;
     }
 
     /**
