@@ -16,11 +16,12 @@ class CreateTradesTable extends Migration
         Schema::create('trades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('tradeable_id');
-            $table->bigInteger('tradeable_type');
+            $table->string('tradeable_type');
             $table->bigInteger('buyer_id');
+            $table->bigInteger('seller_id');
             $table->string('quantity');
             $table->bigInteger('total');
-            $table->enum('origin', ['market', 'live_market']);
+            // $table->enum('origin', ['market', 'live_market']);
             $table->boolean('completed')->default(false);
             $table->timestamps();
         });

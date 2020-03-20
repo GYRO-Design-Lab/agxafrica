@@ -18,6 +18,7 @@ Route::get('/register', function () {
 });
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/trade/', 'HomeController@trading_index')->name('trade');
 
 // Route::get('/stage_four', function () {
 //     return view('stage_four');
@@ -34,6 +35,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('warehouse.live_market', 'LiveMarketController')->shallow();
     Route::get('/payment/{company}', 'PaymentController@showPayment');
     Route::post('/payment', 'PaymentController@redirectToGateway')->name('reg_payment');
+    Route::get('/{company}/trade-investments', 'TradeController@investments');
+    Route::get('/{company}/trade-sales', 'TradeController@sales');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {   

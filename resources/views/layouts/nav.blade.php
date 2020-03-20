@@ -2,8 +2,7 @@
     <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/">
-                AgX Africa </a>
+                <a class="navbar-brand" href="/">AgX Africa </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -51,6 +50,12 @@
                             </a>
                         </li>
                     @endauth
+
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="{{ route('trade' )}}" data-original-title="Enter AgX Trading Center">
+                            Trade
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
