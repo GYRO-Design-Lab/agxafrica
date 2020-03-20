@@ -56,7 +56,7 @@ class RFQController extends Controller
         $rfq->expiry = $request->expiry;
 
         $company->rfqs()->save($rfq);
-        return redirect()->back()->with('status', 'Your Request for Quote was successful.');
+        return redirect()->back()->with('status', 'Your Request for Quote has been published.');
     }
 
     /**

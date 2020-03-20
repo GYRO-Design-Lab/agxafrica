@@ -3,8 +3,8 @@
 
 @section('content')
     <body class="landing-page sidebar-collapse">
-        @yield('nav')
-    
+        @yield('nav')        
+
         <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{ asset('trading/img/d.jpg') }}'); background-size: cover;">
             <div class="container">
                 <img class="img overlay-image" src="{{ asset('trading/img/x.svg') }}" style="background-size: cover; position: relative; width: 100%;">       
@@ -12,6 +12,26 @@
         </div>
 
         <div class="main main-raised col-md-11 offset-md" style="margin-top: -40%; padding: 3%;">
+            @if(Session::has('status'))
+                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ Session::get('status') }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            {{--  form error(s)  --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="container">
                 <div class="row" id="landing_basket_section">
                     <div class="col-md-4 landing_basket" style="">
@@ -224,7 +244,6 @@
                 </div> <!-- landing_basket_section -->
 
                 <!-- Verified Merchants -->
-
                 <div class="section" id="verified_merchants">
                     <div class="card col-md-12 offset-md" style="">
                         <br>
@@ -286,7 +305,7 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        {{--  <div class="form-row">
                             <div class="form-group col-md-4 offset-md-4">
                                 <label for="delivery_location">Search verified merchants</label>
                                 <input type="text" class="form-control" name="search_verified_merchants" id="search_verified_merchants" placeholder="Search verified merchant">
@@ -294,7 +313,7 @@
                                     <button class="btn btn-primary" style="width: 100%">Go</button>
                                 </a>
                             </div>
-                        </div>
+                        </div>  --}}
                     </div>
                 </div> 
                 <!-- /Verified Merchants -->
@@ -307,57 +326,73 @@
                                 <h3 class="card-title">Request for quotation</h3>
                                 <p class="card-text">An easy way to send buying requests to suppliers & get quotes quickly</p>
                                 <br>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="Commodity">Commodity</label>
-                                        <input type="text" class="form-control" name="Commodity" id="Commodity" placeholder="What commodity?">
-                                    </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="categogy">Category</label>
-                                        <select id="categogy" class="form-control">
-                                            <option selected>Choose category</option>
-                                            <option>Agricultural</option>
-                                            <option>Energy</option>
-                                            <option>Forest Products</option>
-                                            <option>Livestock & Meat</option>
-                                            <option>Metal</option>
-                                        </select>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
+                                @endif
 
-                                    <div class="form-group col-md-12">
-                                        <label for="specification">Specification</label>
-                                        <input type="text" class="form-control" name="specification" id="specification" placeholder="Your specification">
-                                    </div>
+                                <form class="" method="POST" action="{{ route('companies.rfq.store', ['company' =>  $slug]) }}">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="Commodity">Commodity</label>
+                                            <input type="text" class="form-control" name="commodity" id="Commodity" placeholder="What commodity?">
+                                        </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="target_price">Target price</label>
-                                        <input type="text" class="form-control" name="target_price" id="target_price" placeholder="What is your target price">
-                                    </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="category">Category</label>
+                                            <select id="category" name="category" class="form-control">
+                                                <option selected>Choose category</option>
+                                                <option>Agricultural</option>
+                                                <option>Energy</option>
+                                                <option>Forest Products</option>
+                                                <option>Livestock & Meat</option>
+                                                <option>Metal</option>
+                                            </select>
+                                        </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="quantity_requested_for">Quantity requested for</label>
-                                        <input type="text" class="form-control" name="quantity_requested_for" id="quantity_requested_for" placeholder="Quantity">
-                                    </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="specification">Specification</label>
+                                            <input type="text" class="form-control" name="specification" id="specification" placeholder="Your specification">
+                                        </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="delivery_location">Delievery location</label>
-                                        <input type="text" class="form-control" name="delivery_location" id="delivery_location" placeholder="Your preffered location">
-                                    </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="target_price">Target price</label>
+                                            <input type="text" class="form-control" name="price" id="target_price" placeholder="What is your target price">
+                                        </div>
 
-                                    <a href="#">
-                                        <button class="btn btn-primary" style="width: 100%">
+                                        <div class="form-group col-md-12">
+                                            <label for="quantity_requested_for">Quantity requested for</label>
+                                            <input type="text" class="form-control" name="quantity" id="quantity_requested_for" placeholder="Quantity">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="delivery_location">Delievery location</label>
+                                            <input type="text" class="form-control" name="delivery_location" id="delivery_location" placeholder="Your preffered location">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="expiry">Expiry - <small>When does this request expire?</small></label>
+                                            <input type="date" class="form-control" name="expiry" id="expiry" placeholder="">
+                                        </div>
+
+                                        <button class="btn btn-primary" type="submit">
                                             Request for quotation &nbsp; <i class="material-icons">send</i> 
                                         </button>
-                                    </a>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="col-md-5" style="background-image: url(assets/img/rfq2.jpg); background-size: contain; min-height: 80%; border-radius: 2em;"></div>
+                        <div class="col-md-5" style="background-image: url('{{ asset('trading/img/rfq2.jpg') }}'); background-size: contain; min-height: 80%; border-radius: 2em;"></div>
                     </div>        
                 </div>
-
 
                 <!-- Trades we offer -->
                 <div class="section" id="rfq">

@@ -18,7 +18,6 @@ Route::get('/register', function () {
 });
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/trade/', 'HomeController@trading_index')->name('trade');
 
 // Route::get('/stage_four', function () {
 //     return view('stage_four');
@@ -27,6 +26,8 @@ Route::get('/trade/', 'HomeController@trading_index')->name('trade');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/trade', 'HomeController@trading_index')->name('trade');
+
     Route::resource('companies', 'CompanyController');
     Route::resource('companies.rfq', 'RFQController')->shallow();
     Route::resource('companies.market', 'MarketController')->shallow();

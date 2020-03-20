@@ -46,7 +46,7 @@ class LoginController extends Controller
             if ($company->reg_documents()->exists()) {
                 if($company->reg_payment()->exists()) {
                     \Session::flash('reg_done', 'You have completed the registration/verification process. We will contact you shortly.');
-                    return '/';
+                    return '/trade';
                 }
 
                 \Session::flash('status', 'This is the final stage. Please go ahead and make the registration payment, to complete the registration/verification process.');

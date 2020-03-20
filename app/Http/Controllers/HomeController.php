@@ -43,6 +43,7 @@ class HomeController extends Controller
         }
 
         $data['live_trades'] = LiveMarket::select('commodity','price')->get();
+        $data['slug'] = $this->company_slug();
 
         return view('trading.index', $data);
     }

@@ -28,10 +28,16 @@
                         <i class="fa fa-instagram"></i>
                         </a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="{{ route('trade' )}}" data-original-title="Enter AgX Trading Center">
+                            Trade
+                        </a>
+                    </li>
 
                     @auth
                         <li class="nav-item">
-                            <a class="auth-link" href="{{ route('logout') }}"
+                            <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"
                                 {{--  style="font-color:red;"  --}}
@@ -49,13 +55,7 @@
                                 {{ __('Login') }}
                             </a>
                         </li>
-                    @endauth
-
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="{{ route('trade' )}}" data-original-title="Enter AgX Trading Center">
-                            Trade
-                        </a>
-                    </li>
+                    @endauth                    
                 </ul>
             </div>
         </div>

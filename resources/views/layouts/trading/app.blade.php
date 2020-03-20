@@ -26,47 +26,47 @@
     {{--  footer  --}}
     <div class="section" id="footer" style="padding: 3%; width: 100%;">
         <div class="container">
-            <div class="row" style="padding: 2%;">
+            <div class="row" stye="padding: 2%;">
                 <div class="col-md-3">
-                <h4>Quick links</h4>
-                <ul>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Terms and Conditions</a></li>
-                    <li><a href="">Services & Products</a></li>
-                    <li><a href="">Market Views</a></li>
-                    <li><a href="">Data & Research</a></li>
-                </ul>
+                    <h4>Quick links</h4>
+                    <ul>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Terms and Conditions</a></li>
+                        <li><a href="">Services & Products</a></li>
+                        <li><a href="">Market Views</a></li>
+                        <li><a href="">Data & Research</a></li>
+                    </ul>
                 </div>
 
                 <div class="col-md-3">
-                <h4>Quick links</h4>
-                <ul>
-                    <li><a href="">How to trade</a></li>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="">FAQs</a></li>
-                    <li><a href="">Team</a></li>
-                    <li><a href="">Social Media</a></li>
-                </ul>
+                    <h4>Quick links</h4>
+                    <ul>
+                        <li><a href="">How to trade</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">FAQs</a></li>
+                        <li><a href="">Team</a></li>
+                        <li><a href="">Social Media</a></li>
+                    </ul>
                 </div>
 
                 <div class="col-md-3">
-                <h4>Buyers</h4>
-                <ul>
-                    <li><a href="">Create RFQs</a></li>
-                    <li><a href="">Offline Sourcing</a></li>
-                    <li><a href="">Latest Products</a></li>
-                    <li><a href="">AgX LIVE</a></li>
-                    <li><a href="">Search Verified Suppliers</a></li>
-                </ul>
+                    <h4>Buyers</h4>
+                    <ul>
+                        <li><a href="">Create RFQs</a></li>
+                        <li><a href="">Offline Sourcing</a></li>
+                        <li><a href="">Latest Products</a></li>
+                        <li><a href="">AgX LIVE</a></li>
+                        <li><a href="">Search Verified Suppliers</a></li>
+                    </ul>
                 </div>
 
                 <div class="col-md-3">
-                <h4>Sellers</h4>
-                <ul>
-                    <li><a href="">Search RFQs</a></li>
-                    <li><a href="">Marketplace</a></li>
-                    <li><a href="">Support</a></li>
-                </ul>
+                    <h4>Sellers</h4>
+                    <ul>
+                        <li><a href="">Search RFQs</a></li>
+                        <li><a href="">Marketplace</a></li>
+                        <li><a href="">Support</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
