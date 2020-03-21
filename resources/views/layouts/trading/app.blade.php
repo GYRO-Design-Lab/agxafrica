@@ -19,6 +19,14 @@
     
     <!-- CSS Files -->
     <link href="{{ asset('trading/css/material-kit.css?v=2.0.6') }}" rel="stylesheet" />
+
+    {{--  custom styles  --}}
+    <style>
+        .card-description > .material-icons {
+            position: relative;
+            top: 6px;
+        }
+    </style>
 </head>
 
     @yield('content')

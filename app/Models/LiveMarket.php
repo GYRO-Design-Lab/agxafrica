@@ -22,4 +22,9 @@ class LiveMarket extends Model
     {
         return $this->morphMany('App\Models\Trade', 'tradeable');
     }
+
+    public function getPhotoAttribute($value)
+    {
+        return \Storage::url($value);
+    }
 }

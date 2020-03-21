@@ -15,4 +15,9 @@ class Warehouse extends Model
     {
         return $this->hasMany('App\Models\LiveMarket');
     }
+
+    public function getPhotoAttribute($value)
+    {
+        return \Storage::url($value);
+    }
 }

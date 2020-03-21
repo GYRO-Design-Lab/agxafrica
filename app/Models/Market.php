@@ -16,5 +16,10 @@ class Market extends Model
     public function trades()
     {
         return $this->morphMany('App\Models\Trade', 'tradeable');
-    }    
+    }
+    
+    public function getPhotoAttribute($value)
+    {
+        return \Storage::url($value);
+    }
 }

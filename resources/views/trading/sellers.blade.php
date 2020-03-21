@@ -29,7 +29,7 @@
 
                                                 {{--  <!--  Remember, verified merchants will be listed first. The "<small>" element below is how we'll identify verified merchants -->   --}}
                                                 {{--  <small id="verified">AgX Verified &nbsp;<i class="material-icons">stars</i></small>  --}}
-                                                <img src="{{ asset('trading/img/products/f.jpg') }}" alt="Raised Image" class="img-raised rounded img-fluid">
+                                                <img src="{{ $s->photo }}" alt="Raised Image" class="img-raised rounded img-fluid">
 
                                                 <h4 class="card-title">{{ ucfirst($s->commodity) }}</h4>
                                                 <p class="card-description">

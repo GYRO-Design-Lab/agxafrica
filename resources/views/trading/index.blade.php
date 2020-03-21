@@ -50,7 +50,7 @@
                                 @if (isset($buyers))
                                     @foreach ($buyers as $b)
                                         <tr>
-                                            <td><a href="{{ route('buyers', ['commodity' => $b->commodity]) }}">{{ $b->commodity }}</a></td>
+                                            <td><a href="{{ route('buyers', ['commodity' => $b->commodity]) }}">{{ ucfirst($b->commodity) }}</a></td>
                                             <td>{{ number_format($b->price, 2) }}</td>
                                         </tr>
                                     @endforeach
@@ -109,7 +109,7 @@
                                 @if (isset($sellers))
                                     @foreach ($sellers as $s)
                                         <tr>
-                                            <td><a href="{{ route('sellers', ['commodity' => $s->commodity]) }}">{{ $s->commodity }}</a></td>
+                                            <td><a href="{{ route('sellers', ['commodity' => $s->commodity]) }}">{{ ucfirst($s->commodity) }}</a></td>
                                             <td>{{ number_format($s->price, 2) }}</td>
                                         </tr>
                                     @endforeach
@@ -171,7 +171,7 @@
                                 @if (!empty($live_trades))
                                     @foreach ($live_trades as $l)
                                         <tr>
-                                            <td><a href="">{{ $l->commodity }}</a></td>
+                                            <td><a href="">{{ ucfirst($l->commodity) }}</a></td>
                                             <td>{{ number_format($l->price, 2) }}</td>
                                             {{--  <td style="padding: 0;">
                                                 <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>

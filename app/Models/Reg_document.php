@@ -12,4 +12,9 @@ class Reg_document extends Model
     {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function getFileAttribute($value)
+    {
+        return \Storage::url($value);
+    }
 }
