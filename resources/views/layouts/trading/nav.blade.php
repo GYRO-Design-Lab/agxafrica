@@ -40,7 +40,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html"><i class="material-icons">face</i> dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}"><i class="material-icons">face</i> dashboard</a>
                     </li>  
                     
                     @auth

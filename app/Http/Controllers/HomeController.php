@@ -30,17 +30,17 @@ class HomeController extends Controller
 
     public function trading_index()
     {
-        $trades = Market::select('commodity','price','trade_type')->get();
-        $data = [];
+        $data['sellers'] = Market::where('trade_type', 'sell')
+                                ->select(\DB::raw("avg(price) as price, commodity"))
+                                ->distinct()
+                                ->groupBy('commodity')
+                                ->get();
 
-        foreach ($trades as $trade) {
-            if($trade->trade_type == 'buy') {
-                $data['buyers'][] = $trade;
-            }
-            else {
-                $data['sellers'][] = $trade;
-            }
-        }
+        $data['buyers'] = Market::where('trade_type', 'buy')
+                                ->select(\DB::raw("avg(price) as price, commodity"))
+                                ->distinct()
+                                ->groupBy('commodity')
+                                ->get();;
 
         $data['live_trades'] = LiveMarket::select('commodity','price')->get();
         $data['slug'] = $this->company_slug();

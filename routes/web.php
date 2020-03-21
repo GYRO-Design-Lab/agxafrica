@@ -27,6 +27,11 @@ Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/trade', 'HomeController@trading_index')->name('trade');
+    Route::get('/trade/sellers/{commodity}', 'MarketController@sellers')->name('sellers');
+    Route::get('/trade/buyers/{commodity}', 'MarketController@buyers')->name('buyers');
+    Route::get('/trade/dashboard', function () {
+        return view('trading.dashboard');
+    })->name('dashboard');
 
     Route::resource('companies', 'CompanyController');
     Route::resource('companies.rfq', 'RFQController')->shallow();

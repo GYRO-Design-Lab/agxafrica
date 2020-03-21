@@ -50,7 +50,7 @@
                                 @if (isset($buyers))
                                     @foreach ($buyers as $b)
                                         <tr>
-                                            <td><a href="">{{ $b->commodity }}</a></td>
+                                            <td><a href="{{ route('buyers', ['commodity' => $b->commodity]) }}">{{ $b->commodity }}</a></td>
                                             <td>{{ number_format($b->price, 2) }}</td>
                                         </tr>
                                     @endforeach
@@ -90,7 +90,7 @@
                                     <td>1,500</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table>              
                     </div>
 
                     <div class="col-md-4 landing_basket" style="">
@@ -109,7 +109,7 @@
                                 @if (isset($sellers))
                                     @foreach ($sellers as $s)
                                         <tr>
-                                            <td><a href="">{{ $s->commodity }}</a></td>
+                                            <td><a href="{{ route('sellers', ['commodity' => $s->commodity]) }}">{{ $s->commodity }}</a></td>
                                             <td>{{ number_format($s->price, 2) }}</td>
                                         </tr>
                                     @endforeach
@@ -161,9 +161,9 @@
                                 <tr>
                                     <th scope="col">Commodity</th>
                                     <th scope="col">Price [$/MT]</th>
-                                    <th scope="col" style="padding: 0;">
-                                    <button id="trend" type="button" style="color: black" class="btn" data-toggle="tooltip" data-placement="top" title="Current status" data-container="body"><i class="material-icons">update</i></button>
-                                    </th>
+                                    {{--  <th scope="col" style="padding: 0;">
+                                        <button id="trend" type="button" style="color: black" class="btn" data-toggle="tooltip" data-placement="top" title="Current status" data-container="body"><i class="material-icons">update</i></button>
+                                    </th>  --}}
                                 </tr>
                             </thead>
 
@@ -173,9 +173,9 @@
                                         <tr>
                                             <td><a href="">{{ $l->commodity }}</a></td>
                                             <td>{{ number_format($l->price, 2) }}</td>
-                                            <td style="padding: 0;">
+                                            {{--  <td style="padding: 0;">
                                                 <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                            </td>
+                                            </td>  --}}
                                         </tr>
                                     @endforeach
                                 @else
@@ -185,61 +185,37 @@
                                 <tr>
                                     <td><a href="">Cocoa</a></td>
                                     <td>1,980</td>
-                                    <td style="padding: 0;">
-                                        <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Cashew</a></td>
                                     <td>1,280</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: red;" class="btn" data-toggle="tooltip" data-placement="top" title="Unstable" data-container="body"><i class="material-icons">trending_down</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Sesame Seeds</a></td>
                                     <td>1,300</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Cotton</a></td>
                                     <td>1,500</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Ginger</a></td>
                                     <td>2,100</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: red;" class="btn" data-toggle="tooltip" data-placement="top" title="Unstable" data-container="body"><i class="material-icons">trending_down</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Soybean</a></td>
                                     <td>850</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Crayfish</a></td>
                                     <td>770</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: green;" class="btn" data-toggle="tooltip" data-placement="top" title="Stable" data-container="body"><i class="material-icons">trending_up</i></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td><a href="">Azobe</a></td>
                                     <td>850</td>
-                                    <td style="padding: 0;">
-                                    <button id="trend" type="button" style="color: red;" class="btn" data-toggle="tooltip" data-placement="top" title="Unstable" data-container="body"><i class="material-icons">trending_down</i></button>
-                                    </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table>                       
                     </div>
                 </div> <!-- landing_basket_section -->
 
@@ -395,7 +371,7 @@
                 </div>
 
                 <!-- Trades we offer -->
-                <div class="section" id="rfq">
+                <div class="section" id="trade_offer">
                     <div class="row">
                         <div class="card col-md-12" style="">
                             <br>

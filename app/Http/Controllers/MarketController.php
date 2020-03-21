@@ -12,7 +12,27 @@ class MarketController extends Controller
     public function __construct()
     {
         $this->middleware('verified_company', ['only' => ['store']]);
-        $this->middleware('commodity_owner', ['except' => ['index', 'create', 'store']]);
+        $this->middleware('commodity_owner', ['except' => ['index', 'create', 'store', 'sellers', 'buyers']]);
+    }
+
+    public function sellers($commodity)
+    {
+        $data['sellers'] = Market::where('trade_type','sell')
+                                ->where('commodity', $commodity)
+                                ->select('commodity','price','location','photo')
+                                ->get();
+
+        return view('trading.sellers', $data);
+    }
+
+    public function buyers($commodity)
+    {
+        $data['buyers'] = Market::where('trade_type','buy')
+                                ->where('commodity', $commodity)
+                                ->select('commodity','price','location','photo')
+                                ->get();
+
+        return view('trading.buyers', $data);
     }
 
     /**
