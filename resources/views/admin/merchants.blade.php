@@ -23,6 +23,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Company</th>
                         <th scope="col">Verified</th>
                         <th scope="col">Paid</th>
@@ -37,6 +38,7 @@
                         <th scope="row">{{ $n }}</th>
                         <td>{{ $m->full_name }}</td>
                         <td><a href="tel:{{ $m->phone }}">{{ $m->phone }}</a></td>
+                        <td><a href="mailto:{{ $m->email }}">{{ $m->email }}</a></td>
                         <td>{{ $m->company }}</td>
                         <td class="text-center">
                             @if ($m->verified)

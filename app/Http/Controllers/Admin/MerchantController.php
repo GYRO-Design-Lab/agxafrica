@@ -18,9 +18,9 @@ class MerchantController extends Controller
         $data['merchants'] = User::role('merchant')
                                     ->join('companies', 'companies.user_id', 'users.id')
                                     ->leftjoin('reg_payments', 'reg_payments.company_id', 'companies.id')
-                                    ->select('users.full_name', 'users.phone', 'users.email_verified_at as verified', 'companies.name as company', 'reg_payments.id as paid')
+                                    ->select('users.full_name', 'users.phone', 'users.email', 'users.email_verified_at as verified', 'companies.name as company', 'reg_payments.id as paid')
                                     ->simplePaginate(20);
-        // dd($merchants);
+
         return view('admin.merchants', $data);
     }
 
